@@ -1,0 +1,70 @@
+
+Menus: About, Contact, Categories, Home,
+
+Tables:
+    -User
+        ->name 
+        ->email
+        ->role
+        ->phone
+        ->photo
+        ->password
+
+    -Setting
+        ->fb_url
+        ->twitter_url
+        ->instagram_url
+        ->footer_description
+        ->address
+        ->phone
+        ->email
+    
+    -Category
+        ->name
+    
+    -Post
+        ->user_id
+        ->title
+        ->description
+        ->image
+        ->category_id
+
+    -Tag
+        ->name
+    
+    -post_tag
+        ->post_id
+        ->tag_id
+
+========================================================
+
+
+    -Comment
+        ->user_id
+        ->post_id
+        ->comment_description
+
+    -Reply
+        ->user_id
+        ->comment_id
+        ->reply_description
+
+    -About
+        ->history_title
+        ->history_description
+        ->history_image
+        ->mv_title
+        ->mv_description
+        ->mv_photo
+
+    -Team
+        ->name
+        ->position
+        ->photo
+        ->bio
+
+    -Message
+        ->name
+        ->email
+        ->subject
+        ->msg
