@@ -17,7 +17,7 @@ Tables:
         ->footer_description
         ->address
         ->phone
-        ->email
+        ->email 
     
     -Category
         ->name
@@ -35,8 +35,6 @@ Tables:
     -post_tag
         ->post_id
         ->tag_id
-
-========================================================
 
 
     -Comment
