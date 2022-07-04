@@ -11,4 +11,8 @@ class Tag extends Model
 
     
     protected $guarded = [];
+
+    public function posts(){
+        return $this->hasMany(Tag::class);
+    }
 }

@@ -66,3 +66,17 @@ Tables:
         ->email
         ->subject
         ->msg
+
+
+
+        --------------
+
+        User 1    -----  *Post
+        User 1    -----  *comment
+        User 1    -----  *reply
+        post 1    -----  *comment
+        post *    -----  *tag
+        comment 1 -----  *reply
+
+
+        
