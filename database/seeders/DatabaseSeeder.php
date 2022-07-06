@@ -5,6 +5,11 @@ namespace Database\Seeders;
 use App\Models\About;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Message;
+use App\Models\Post;
+use App\Models\Reply;
+use App\Models\Tag;
+use App\Models\Team;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -20,7 +25,12 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         // Category::factory(10)->create();
         
-        Comment::factory(20)->create();
+        // Comment::factory(20)->create();
+        // Message::factory(15)->create();
+        // Post::factory(25)->create();
+        // Reply::factory(20)->create();
+        // Tag::factory(20)->create();
+        // Team::factory(10)->create();
 
 
         // \App\Models\User::create([

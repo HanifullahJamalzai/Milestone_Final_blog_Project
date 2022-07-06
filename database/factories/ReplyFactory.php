@@ -17,7 +17,9 @@ class ReplyFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'user_id'           => 2,
+            'comment_id'        => 2,
+            'reply_description' => fake()->paragraph(1),
         ];
     }
 }
