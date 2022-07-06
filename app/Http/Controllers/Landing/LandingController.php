@@ -13,7 +13,7 @@ class LandingController extends Controller
     public function index(){
         
         return view('landing.index')
-                    ->with('slider', Post::orderBy('visitor', 'desc')->limit(5)->get())
+                    ->with('trends', Post::orderBy('visitor', 'desc')->limit(5)->get())
                     ->with('setting', Setting::first())
                     ->with('categories', Category::all());
     } //End Method
