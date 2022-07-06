@@ -8,6 +8,7 @@ use App\Models\Comment;
 use App\Models\Message;
 use App\Models\Post;
 use App\Models\Reply;
+use App\Models\Setting;
 use App\Models\Tag;
 use App\Models\Team;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -53,6 +54,16 @@ class DatabaseSeeder extends Seeder
 
         //     Fugit eaque illum blanditiis, quo exercitationem maiores autem laudantium unde excepturi dolores quasi eos vero harum ipsa quam laborum illo aut facere voluptates aliquam adipisci sapiente beatae ullam. Tempora culpa iusto illum accusantium cum hic quisquam dolor placeat officiis eligendi.',
         //     'mv_photo' => 'https://avatars.githubusercontent.com/u/43265047?v=4',
+        // ]);
+
+        // Setting::create([
+        //     'fb_url' => fake()->url(),
+        //     'twitter_url' => fake()->url(),
+        //     'instagram_url' => fake()->url(),
+        //     'footer_description' => fake()->paragraph(3),
+        //     'address' => fake()->sentence(),
+        //     'phone' => fake()->phoneNumber(),
+        //     'email' => fake()->companyEmail(),
         // ]);
 
         // \App\Models\User::factory()->create([

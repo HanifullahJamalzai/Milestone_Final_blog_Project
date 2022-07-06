@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Landing\LandingController;
 
 // Admin Related Routes 
 Route::middleware(['auth'])->group(function(){
@@ -23,17 +24,13 @@ Route::middleware(['guest'])->group(function(){
 
 
 // Landing Related Routes
-Route::get('/', function () {
-    return view('landing.index');
-});
+Route::get('/', [LandingController::class, 'index'])->name('home');
+Route::get('/contact', [LandingController::class, 'contact'])->name('contact');
 
 Route::get('/about', function () {
     return view('landing.about');
-});
+})->name('about');
 
-Route::get('/contact', function () {
-    return view('landing.contact');
-});
 
 Route::get('/post', function () {
     return view('landing.post');

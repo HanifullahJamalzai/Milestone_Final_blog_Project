@@ -6,8 +6,8 @@
         <div class="row g-5">
           <div class="col-lg-4">
             <h3 class="footer-heading">About ZenBlog</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ab, perspiciatis beatae autem deleniti voluptate nulla a dolores, exercitationem eveniet libero laudantium recusandae officiis qui aliquid blanditiis omnis quae. Explicabo?</p>
-            <p><a href="about.html" class="footer-link-more">Learn More</a></p>
+            <p>{{ $setting->footer_description }}</p>
+            <p><a href="{{ route('about')}}" class="footer-link-more">Learn More</a></p>
           </div>
           <div class="col-6 col-lg-2">
             <h3 class="footer-heading">Navigation</h3>
@@ -23,15 +23,9 @@
           <div class="col-6 col-lg-2">
             <h3 class="footer-heading">Categories</h3>
             <ul class="footer-links list-unstyled">
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Business</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Culture</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Sport</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Food</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Politics</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Celebrity</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Startups</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Travel</a></li>
-
+              @foreach ($categories as $category)
+                <li><a href="category.html"><i class="bi bi-chevron-right"></i> {{ $category->name }}</a></li>
+              @endforeach
             </ul>
           </div>
 
