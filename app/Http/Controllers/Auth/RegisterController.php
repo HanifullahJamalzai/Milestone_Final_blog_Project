@@ -25,7 +25,7 @@ class RegisterController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
-        $user->role = $request->role ? $request->role : 3;
+        $user->role = 3;
         $user->password = bcrypt($request->password);
 
         if($request->hasFile('photo')){
