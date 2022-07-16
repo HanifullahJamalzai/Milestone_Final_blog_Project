@@ -61,12 +61,12 @@
                         <div class="text-danger text-sm">{{$invalid}}</div>
                       @endif --}}
     
-                      <form class="row g-3" action="#" method="post">
+                      <form class="row g-3" action="{{route('login')}}" method="post">
                         @csrf
                         <div class="col-12">
-                          <label for="yourUsername" class="form-label">Email</label>
+                          <label for="email" class="form-label">Email</label>
                           <div class="input-group has-validation">
-                            <input type="email" name="email" class="form-control" id="yourUsername" value="{{old('email')}}">
+                            <input type="email" name="email" class="form-control" id="email" value="{{old('email')}}">
                           </div>
                           @error('email')
                             <div class="text-danger text-sm">{{$message}}</div>

@@ -58,7 +58,7 @@
                         <p class="text-center small">Enter your username & password to login</p>
                       </div>
     
-                      <form class="row g-3" method="post" action="#" enctype="multipart/form-data">
+                      <form class="row g-3" method="post" action="{{ route('EditorRegister') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="col-6">
@@ -102,6 +102,14 @@
                             <label for="yourPassword" class="form-label">Photo</label>
                             <input type="file" name="photo" class="form-control" id="yourPassword">
                         </div>
+
+                        <div class="col-6">
+                          <label for="yourphone" class="form-label">Phone</label>
+                          <input type="text" name="phone" class="form-control" id="yourphone">
+                          @error('phone')
+                                <div class="text-danger text-sm">{{$message}}</div>
+                          @enderror
+                      </div>
 
                         <div class="col-12">
                           <button class="btn btn-primary w-100" type="submit">Register</button>

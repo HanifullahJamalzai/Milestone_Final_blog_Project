@@ -12,7 +12,8 @@ class RegisterController extends Controller
         return view('auth.register');
     }
 
-    public function store(Request $request){
+    public function EditorRegister(Request $request){
+        // dd($request->all());
         $data = $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
@@ -37,5 +38,9 @@ class RegisterController extends Controller
         auth()->attempt($request->only('email', 'password'));
 
         return redirect()->route('home');
+    }
+
+    public function UserRegister(Request $request){
+        return 'socialite';
     }
 }
