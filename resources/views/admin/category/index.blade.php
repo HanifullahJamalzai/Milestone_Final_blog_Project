@@ -28,12 +28,49 @@
                   {{session('success')}}
               </span>
             @endif
-          <div class="card-body">
-            <h5 class="card-title">Categories</h5>
+
+            {{-- <div class="card"> --}}
+              <div class="card-body">
+                <h5 class="card-title">Categories</h5>
+  
+                <!-- Table with hoverable rows -->
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">created_at</th>
+                      <th scope="col">updated_at</th>
+                      <th scope="col">action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @php
+                        $number = 0;
+                    @endphp
+                    @foreach ($categories as $category )
+                      <tr>
+                        <th scope="row">{{++$number}}</th>
+                        <td>{{$category->name}}</td>
+                        <td>{{$category->created_at}}</td>
+                        <td>{{$category->updated_at}}</td>
+                        <td class="d-flex"> 
+                          <form action="{{route('category.destroy', $category)}}" method="post">
+                            @method('delete')
+                            @csrf
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                          </form>
+                           | Edit</td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+                <!-- End Table with hoverable rows -->
+  
+              </div>
+            </div>
+
             
-            <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
-          
-          </div>
         </div>
 
       </div>
