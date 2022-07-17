@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -8,9 +9,7 @@ use App\Http\Controllers\Landing\LandingController;
 
 // Admin Related Routes 
 Route::middleware(['auth'])->group(function(){
-    Route::get('/admin', function () {
-        return view('admin.index');
-    });
+    Route::get('/admin', [DashboardController::class, 'index']);
     Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 });
 
