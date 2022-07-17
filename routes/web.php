@@ -1,7 +1,14 @@
 <?php
 
 use App\Http\Controllers\Admin\AboutController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\MessageController;
+use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\Admin\TeamController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -13,13 +20,13 @@ Route::group(['prefix' => 'admin', 'middleware'=>'auth'], function(){
     Route::get('/', [DashboardController::class, 'index'])->name('admin');
     Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
     Route::resource('about', AboutController::class);
-    Route::resource('category', AboutController::class);
-    Route::resource('message', AboutController::class);
-    Route::resource('post', AboutController::class);
-    Route::resource('setting', AboutController::class);
-    Route::resource('tag', AboutController::class);
-    Route::resource('team', AboutController::class);
-    Route::resource('user', AboutController::class);
+    Route::resource('category', CategoryController::class);
+    Route::resource('message', MessageController::class);
+    Route::resource('post', PostController::class);
+    Route::resource('setting', SettingController::class);
+    Route::resource('tag', TagController::class);
+    Route::resource('team', TeamController::class);
+    Route::resource('user', UserController::class);
 });
 
 // Route::prefix('admin')->group(function () {

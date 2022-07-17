@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -35,7 +36,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = $request->validate([
+            'name' => 'required|min:4|max:255'
+        ]);
+
+        Category::create($category);
+        return redirect()->back()->with('success', 'You have Successfully created category!');
     }
 
     /**

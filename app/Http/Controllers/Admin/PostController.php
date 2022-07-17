@@ -82,4 +82,8 @@ class PostController extends Controller
     {
         //
     }
+
+    public function abc(){
+        return 'abc';
+    }
 }

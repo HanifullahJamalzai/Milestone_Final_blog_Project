@@ -3,9 +3,58 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link " href="{{route('admin')}}">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+      <li class="nav-heading"><hr></li>
+      <li class="nav-item">
+        <a class="nav-link " href="{{ route('post.index') }}">
+          <i class="bi bi-grid"></i>
+          <span>Post</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+      <li class="nav-item">
+        <a class="nav-link " href="{{ route('category.index') }}">
+          <i class="bi bi-grid"></i>
+          <span>Category</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+      <li class="nav-item">
+        <a class="nav-link " href="{{ route('tag.index') }}">
+          <i class="bi bi-grid"></i>
+          <span>Tag</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-heading">Application ..</li>
+
+      
+      <li class="nav-item">
+        <a class="nav-link " href="{{route('team.index')}}">
+          <i class="bi bi-grid"></i>
+          <span>Team</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+      <li class="nav-item">
+        <a class="nav-link " href="{{ route('setting.index')}}">
+          <i class="bi bi-grid"></i>
+          <span>Setting</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link " href="{{ route('user.index')}}">
+          <i class="bi bi-grid"></i>
+          <span>Users</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+      
+      <li class="nav-item">
+        <a class="nav-link " href="{{ route('user.index')}}">
+          <i class="bi bi-grid"></i>
+          <span>Profile</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
@@ -179,7 +228,6 @@
         </ul>
       </li><!-- End Icons Nav -->
 
-      <li class="nav-heading">Pages</li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="users-profile.html">
