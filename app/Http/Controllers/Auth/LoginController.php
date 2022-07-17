@@ -19,15 +19,15 @@ class LoginController extends Controller
 
         // exit();
         if(!auth()->attempt($request->only('email', 'password'))){
-            return redirect()->back()->withErrors('error', 'Credentials do not match');
+            return redirect()->back()->with('invalid', 'Invalid Login details');
         }
         else{
             auth()->attempt($request->only('email', 'password'), $request->remember);
 
             // One Way to display Flash message
-            // session()->flash('success', 'Welcome Back');
+            // session()->flash('success', 'Welcome Back'. auth()->user()->name);
 
-            return redirect()->route('home')->with('success', 'Welcome back');
+            return redirect()->route('admin')->with('success', 'Welcome back Mr.'.auth()->user()->name);
         }
     }
 }

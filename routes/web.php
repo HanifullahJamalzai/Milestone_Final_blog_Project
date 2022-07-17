@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
@@ -8,10 +9,25 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Landing\LandingController;
 
 // Admin Related Routes 
-Route::middleware(['auth'])->group(function(){
-    Route::get('/admin', [DashboardController::class, 'index']);
+Route::group(['prefix' => 'admin', 'middleware'=>'auth'], function(){
+    Route::get('/', [DashboardController::class, 'index'])->name('admin');
     Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
+    Route::resource('about', AboutController::class);
+    Route::resource('category', AboutController::class);
+    Route::resource('message', AboutController::class);
+    Route::resource('post', AboutController::class);
+    Route::resource('setting', AboutController::class);
+    Route::resource('tag', AboutController::class);
+    Route::resource('team', AboutController::class);
+    Route::resource('user', AboutController::class);
 });
+
+// Route::prefix('admin')->group(function () {
+//     Route::middleware(['auth'])->group(function(){
+        
+//     });
+// });
+
 
 
 // Guest Related Routes
@@ -20,7 +36,6 @@ Route::middleware(['guest'])->group(function(){
     Route::post('/login', [LoginController::class, 'store'])->name('login');
 
     Route::get('/register', [RegisterController::class, 'register'])->name('register');
-    // Route::post('/register', [RegisterController::class, 'UserRegister'])->name('UserRegister');
     Route::post('/register', [RegisterController::class, 'EditorRegister'])->name('EditorRegister');
 });
 

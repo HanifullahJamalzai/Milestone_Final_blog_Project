@@ -1,9 +1,9 @@
 @extends('admin.layouts.app')
-@section('title', 'User')
+@section('title', 'Team')
 @section('contents')
 
 <div class="pagetitle">
-    <h1>User Page</h1>
+    <h1>Team Page</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
