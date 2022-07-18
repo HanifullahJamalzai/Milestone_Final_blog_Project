@@ -52,7 +52,7 @@
       </li><!-- End Dashboard Nav -->
       
       <li class="nav-item">
-        <a class="nav-link " href="{{ route('user.index')}}">
+        <a class="nav-link " href="{{ route('profile.index')}}">
           <i class="bi bi-grid"></i>
           <span>Profile</span>
         </a>
