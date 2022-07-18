@@ -1,41 +1,83 @@
 @extends('admin.layouts.app')
 @section('title', 'Team')
 @section('contents')
+  
+  <div class="card p-3">
+    <form action="forms/contact.php" method="post" class="php-email-form">
+      <div class="row gy-2">
 
-<div class="pagetitle">
-    <h1>Team Page</h1>
-    <nav>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item">Pages</li>
-        <li class="breadcrumb-item active">Blank</li>
-      </ol>
-    </nav>
-  </div><!-- End Page Title -->
+        <div class="col-md-4">
+          <input type="text" name="name" class="form-control" placeholder="Name" required>
+        </div>
 
-  <section class="section">
-    <div class="row">
-      <div class="col-lg-6">
+        <div class="col-md-4 ">
+          <input type="email" class="form-control" name="email" placeholder="Position" required>
+        </div>
 
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Example Card</h5>
-            <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
-          </div>
+        <div class="col-md-4">
+          <input type="file" class="form-control" name="subject" placeholder="Photo" required>
+        </div>
+
+        <div class="col-md-12">
+          <textarea class="form-control" name="message" rows="2" placeholder="Message" required></textarea>
+        </div>
+
+        <div class="col-md-12 text-center">
+          <button type="submit" class="btn btn-primary w-100">Save</button>
         </div>
 
       </div>
+    </form>
+  </div>
 
-      <div class="col-lg-6">
 
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Example Card</h5>
-            <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
-          </div>
+  <section class="section contact">
+
+    <div class="row gy-4">
+
+      <div class="col-xl-12">
+
+        <div class="row">
+          @foreach ($teams as $team)
+            <div class="col-lg-6">
+              
+              <div class="card mb-3">
+                <div class="row g-0">
+                  <div class="col-md-3">
+                    <img src="{{$team->photo}}" class="img-fluid rounded-start" alt="...">
+                  </div>
+                  <div class="col-md-9">
+                    <div class="card-body">
+                      <div class="d-flex flex-end">
+                        <h5 class="card-title">{{$team->name}} | {{$team->position}}</h5>
+                        
+                        <div class="icon">
+                          <a href="#">
+                            <i class="bi bi-pencil-square"></i>
+                          </a>
+                        </div>
+                      </div>
+                      
+                      <p class="card-text">{{$team->bio}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          @endforeach
+
         </div>
 
       </div>
+      </div>
+
     </div>
+
   </section>
+
+
+
+
 @endsection
