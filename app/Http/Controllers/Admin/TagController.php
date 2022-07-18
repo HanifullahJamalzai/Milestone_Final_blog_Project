@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class TagController extends Controller
@@ -14,7 +15,8 @@ class TagController extends Controller
      */
     public function index()
     {
-        return view('admin.tag.index');
+        return view('admin.tag.index')
+                    ->with('tags', Tag::orderBy('id', 'desc')->get());
     }
 
     /**
@@ -35,7 +37,12 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|min:4|max:255'
+        ]);
+
+        Tag::create($data);
+        return redirect()->back()->with('success', 'You have Successfully created Tag!');
     }
 
     /**
@@ -55,9 +62,11 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit(Tag $tag)
+    {   
+        return view('admin.tag.index')
+                ->with('tag', $tag)
+                ->with('tags', Tag::orderBy('id', 'desc')->get());
     }
 
     /**
@@ -67,9 +76,15 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Tag $tag)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|min:4|max:255'
+        ]);
+
+        $tag->update(['name' => $data['name']]);
+
+        return redirect()->route('tag.index')->with('success', 'Tag updated successfully!');
     }
 
     /**
@@ -78,8 +93,9 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+        return back()->with('success', 'You have Successfully Deleted a Tag!');
     }
 }

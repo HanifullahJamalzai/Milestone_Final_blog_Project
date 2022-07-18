@@ -58,11 +58,7 @@
                         <p class="text-center small">Enter your username & password to login</p>
                       </div>
 
-                      @if(session('invalid'))
-                        <div class="text-danger text-sm text-center bg-danger">
-                          <span class="text-strong text-white">{{ session('invalid') }}</span>
-                        </div>
-                      @endif
+                      @include('common.alert')
     
                       <form class="row g-3" action="{{route('login')}}" method="post">
                         @csrf

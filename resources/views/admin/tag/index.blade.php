@@ -2,40 +2,80 @@
 @section('title', 'Tag')
 @section('contents')
 
-<div class="pagetitle">
-    <h1>Tag Page</h1>
-    <nav>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item">Pages</li>
-        <li class="breadcrumb-item active">Blank</li>
-      </ol>
-    </nav>
-  </div><!-- End Page Title -->
-
   <section class="section">
     <div class="row">
-      <div class="col-lg-6">
+      <div class="col-lg-12">
+          <div class="col-md-12" >
+            <form action="{{ isset($tag) ? route('tag.update', $tag) : route('tag.store') }}" method="post">
+              @csrf
+              @if(isset($tag)) @method('put') @endif
 
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Example Card</h5>
-            <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
-          </div>
+              @error('name')
+                <span class="text-danger text-sm">{{$message}}</span>
+              @enderror
+
+              <div class="form-floating d-flex" >
+
+                <div class="col-md-10">
+                  <input type="text" name="name" class="form-control" id="floatingName" placeholder="Your Name" value="{{isset($tag) ? $tag->name : ''}}">
+                </div>
+                  <button type="submit"  class="col-md-2 btn {{isset($tag) ? 'btn-info' : 'btn-primary' }}"> {{isset($tag) ? 'Update' : 'Save' }}</button>
+                </div>
+              </div>
+            </form>
+
+        <div class="card mt-3">
+           {{-- alert --}}
+            @include('common.alert')
+            {{-- <div class="card"> --}}
+              <div class="card-body">
+                <h5 class="card-title">Tags</h5>
+  
+                <!-- Table with hoverable rows -->
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">created_at</th>
+                      <th scope="col">updated_at</th>
+                      <th scope="col">action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @php
+                        $number = 0;
+                    @endphp
+                    @foreach ($tags as $tag )
+                      <tr>
+                        <th scope="row">{{++$number}}</th>
+                        <td>{{$tag->name}}</td>
+                        <td>{{$tag->created_at}}</td>
+                        <td>{{$tag->updated_at}}</td>
+                        <td class="d-flex"> 
+                          <form action="{{route('tag.destroy', $tag)}}" method="post">
+                            @method('delete')
+                            @csrf
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                          </form>
+                           | <a href="{{route('tag.edit', $tag)}}" class="btn btn-info">Edit</a>
+                          </td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+                <!-- End Table with hoverable rows -->
+  
+              </div>
+            </div>
+
+            
         </div>
 
       </div>
 
-      <div class="col-lg-6">
-
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Example Card</h5>
-            <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
-          </div>
-        </div>
-
-      </div>
     </div>
   </section>
+
+  
 @endsection

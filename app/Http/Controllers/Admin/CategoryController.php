@@ -65,8 +65,8 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {   
         return view('admin.category.index')
-                    ->with('category', $category)
-                    ->with('categories', Category::orderBy('id', 'desc')->get());
+                ->with('category', $category)
+                ->with('categories', Category::orderBy('id', 'desc')->get());
     }
 
     /**
@@ -76,14 +76,16 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
         $data = $request->validate([
             'name' => 'required|min:4|max:255'
         ]);
-        $category->update($data);
 
-        return redirect()->route('category.index')->with('success', 'You have Successfully Update Category!');
+        $curr_category = Category::findOrFail($id);
+        $curr_category->update(['name' => $data['name']]);
+
+        return redirect()->route('category.index')->with('success', 'Category updated successfully!');
     }
 
     /**

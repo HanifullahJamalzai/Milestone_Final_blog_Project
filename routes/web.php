@@ -21,7 +21,14 @@ Route::group(['prefix' => 'admin', 'middleware'=>'auth'], function(){
     Route::get('/', [DashboardController::class, 'index'])->name('admin');
     Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
     Route::resource('about', AboutController::class);
-    Route::resource('category', CategoryController::class);
+    
+    // Route::resource('category', CategoryController::class);
+    Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
+    Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
+    Route::get('/category/{category}/edit', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::put('/category/{category}/update', [CategoryController::class, 'update'])->name('category.update');
+    Route::get('/category/{category}/destroy', [CategoryController::class, 'destroy'])->name('category.destroy');
+    
     Route::resource('message', MessageController::class);
     Route::resource('post', PostController::class);
     Route::resource('setting', SettingController::class);
