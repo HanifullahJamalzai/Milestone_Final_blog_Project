@@ -13,29 +13,45 @@
     </nav>
   </div><!-- End Page Title -->
 
-  <section class="section">
-    <div class="row">
-      <div class="col-lg-6">
+  <div class="card p-3">
+    <form action="forms/contact.php" method="post" class="php-email-form">
+      <div class="row gy-2">
 
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Example Card</h5>
-            <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
-          </div>
+        <div class="col-md-6">
+          <input type="text" name="name" class="form-control" placeholder="Facebook URL" required>
+        </div>
+
+        <div class="col-md-6">
+          <input type="email" class="form-control" name="email" placeholder="Twitter URL" required>
+        </div>
+
+        <div class="col-md-6">
+          <input type="email" class="form-control" name="email" placeholder="Instagram URL" required>
+        </div>
+        
+        <div class="col-md-6">
+          <input type="text" class="form-control" name="subject" placeholder="Address" required>
+        </div>
+
+        <div class="col-md-6">
+          <input type="text" class="form-control" name="subject" placeholder="Phone" required>
+        </div>
+
+        <div class="col-md-6">
+          <input type="email" class="form-control" name="subject" placeholder="Email" required>
+        </div>
+
+        <div class="col-md-12">
+          <textarea class="form-control" name="message" rows="7" placeholder="Footer Description" required></textarea>
+        </div>
+
+        <div class="col-md-12 text-center">
+          <button type="submit" class="btn btn-primary w-100">Save</button>
         </div>
 
       </div>
+    </form>
+  </div>
 
-      <div class="col-lg-6">
-
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Example Card</h5>
-            <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
+  
 @endsection

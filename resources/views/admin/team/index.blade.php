@@ -31,7 +31,7 @@
   </div>
 
 
-  <section class="section contact">
+  <section class="section">
 
     <div class="row gy-4">
 
