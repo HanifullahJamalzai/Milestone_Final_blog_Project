@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.category.index')
-                    ->with('categories', Category::orderBy('id', 'desc')->get());
+        return view('admin.profile.index');
     }
 
     /**
@@ -37,12 +35,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $category = $request->validate([
-            'name' => 'required|min:4|max:255'
-        ]);
-
-        Category::create($category);
-        return redirect()->back()->with('success', 'You have Successfully created category!');
+        //
     }
 
     /**
@@ -62,11 +55,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
-    {   
-        return view('admin.category.index')
-                    ->with('category', $category)
-                    ->with('categories', Category::orderBy('id', 'desc')->get());
+    public function edit($id)
+    {
+        //
     }
 
     /**
@@ -76,14 +67,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        $data = $request->validate([
-            'name' => 'required|min:4|max:255'
-        ]);
-        $category->update($data);
-
-        return redirect()->route('category.index')->with('success', 'You have Successfully Update Category!');
+        //
     }
 
     /**
@@ -92,9 +78,8 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        $category->delete();
-        return back()->with('success', 'You have Successfully Deleted a category!');
+        //
     }
 }

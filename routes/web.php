@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\TeamController;
@@ -27,6 +28,7 @@ Route::group(['prefix' => 'admin', 'middleware'=>'auth'], function(){
     Route::resource('tag', TagController::class);
     Route::resource('team', TeamController::class);
     Route::resource('user', UserController::class);
+    Route::resource('profile', ProfileController::class);
 });
 
 // Route::prefix('admin')->group(function () {
