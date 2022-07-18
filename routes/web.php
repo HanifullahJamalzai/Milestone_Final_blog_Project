@@ -41,10 +41,10 @@ Route::group(['prefix' => 'admin', 'middleware'=>'auth'], function(){
 
 // Guest Related Routes
 Route::middleware(['guest'])->group(function(){
-    Route::get('/login', [LoginController::class, 'login'])->name('login');
-    Route::post('/login', [LoginController::class, 'store'])->name('login');
+    Route::get('/login', [LoginController::class, 'index'])->name('login');
+    Route::post('/login', [LoginController::class, 'login'])->name('login');
 
-    Route::get('/register', [RegisterController::class, 'register'])->name('register');
+    Route::get('/register', [RegisterController::class, 'index'])->name('register');
     Route::post('/register', [RegisterController::class, 'EditorRegister'])->name('EditorRegister');
 });
 

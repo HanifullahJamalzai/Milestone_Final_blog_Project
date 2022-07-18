@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-    public function login(){
+    public function index(){
         return view('auth.login');
     }
 
-    public function store(Request $request){
+    public function login(Request $request){
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:6|max:255'
