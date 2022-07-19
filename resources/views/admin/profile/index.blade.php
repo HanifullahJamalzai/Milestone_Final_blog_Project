@@ -79,7 +79,9 @@
               <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                 <!-- Profile Edit Form -->
-                <form>
+                <form action="{{route('register.update', auth()->user()->id)}}" enctype="multipart/form-data" method="post">
+                  @csrf
+                  @method('PUT')
 
                   <div class="row mb-3">
                     <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>

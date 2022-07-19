@@ -58,7 +58,7 @@
                         <p class="text-center small">Enter your username & password to login</p>
                       </div>
     
-                      <form class="row g-3" method="post" action="{{ route('EditorRegister') }}" enctype="multipart/form-data">
+                      <form class="row g-3" method="post" action="{{ route('register.store') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="col-6">
@@ -74,7 +74,7 @@
                         <div class="col-6">
                           <label for="yourUsername" class="form-label">Email</label>
                           <div class="input-group">
-                            <input type="text" name="email" class="form-control" id="yourUsername" value="{{old('email')}}" >
+                            <input type="email" name="email" class="form-control" id="yourUsername" value="{{old('email')}}" >
                         </div>
                             @error('email')
                                 <div class="text-danger text-sm">{{$message}}</div>
@@ -99,8 +99,8 @@
                         </div>
 
                         <div class="col-6">
-                            <label for="yourPassword" class="form-label">Photo</label>
-                            <input type="file" name="photo" class="form-control" id="yourPassword">
+                            <label for="photo" class="form-label">Photo</label>
+                            <input type="file" name="photo" class="form-control" id="photo">
                         </div>
 
                         <div class="col-6">

@@ -58,7 +58,7 @@
                             @csrf
                             <button type="submit" class="btn btn-danger">Delete</button>
                           </form>
-                           | <a href="{{route('tag.edit', $tag)}}" class="btn btn-info">Edit</a>
+                           | <a href="{{ route('tag.edit', $tag) }}" class="btn btn-info">Edit</a>
                           </td>
                       </tr>
                     @endforeach

@@ -20,8 +20,9 @@ use App\Http\Controllers\Landing\LandingController;
 Route::group(['prefix' => 'admin', 'middleware'=>'auth'], function(){
     Route::get('/', [DashboardController::class, 'index'])->name('admin');
     Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
+    Route::put('/register/{user}/update', [RegisterController::class, 'update'])->name('register.update');
+
     Route::resource('about', AboutController::class);
-    
     // Route::resource('category', CategoryController::class);
     Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
     Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
@@ -52,7 +53,7 @@ Route::middleware(['guest'])->group(function(){
     Route::post('/login', [LoginController::class, 'login'])->name('login');
 
     Route::get('/register', [RegisterController::class, 'index'])->name('register');
-    Route::post('/register', [RegisterController::class, 'EditorRegister'])->name('EditorRegister');
+    Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 });
 
 

@@ -58,7 +58,12 @@
                             @csrf
                             <button type="submit" class="btn btn-danger">Delete</button>
                           </form>
-                           | <a href="{{route('category.edit', $category)}}" class="btn btn-info">Edit</a>
+                           | <a 
+                              {{-- href="/category/{{$category->id}}/edit " --}}
+                              href="{{ route('category.edit', $category) }}"
+                              {{-- href="url('/category/.{{ $category->id }}./edit')" --}}
+                           
+                            class="btn btn-info">Edit</a>
                           </td>
                       </tr>
                     @endforeach
