@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Team;
 use Illuminate\Http\Request;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class TeamController extends Controller
 {
@@ -37,7 +38,32 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|min:8|max:255',
+            'position' => 'required|min:8|max:255',
+            'bio' => 'required|min:8',
+            'photo' => 'required',
+        ]);
+
+        
+        if($request->hasFile('photo')){
+            $fileName = date('YmdHis').'_'.$request->name.'_'.rand(10,10000).'.'.$request->photo->extension();
+            
+            $img = Image::make($request->file('photo'));
+            $img->resize(300, 300);
+            $img->save('storage/images/team/'.$fileName);
+            $photo = '/storage/images/team/'.$fileName;
+        }
+
+        Team::create([
+            'name' => $data['name'],
+            'position' => $data['position'],
+            'bio' => $data['bio'],
+            'photo' => $photo,
+        ]);
+
+        return back()->with('success', 'Team member has successfully added!');
+
     }
 
     /**
@@ -57,9 +83,10 @@ class TeamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Team $team)
     {
-        //
+        $teams = Team::all();
+        return view('admin.team.index', compact('team', 'teams'));
     }
 
     /**
@@ -69,9 +96,34 @@ class TeamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Team $team)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|min:8|max:255',
+            'position' => 'required|min:8|max:255',
+            'bio' => 'required|min:8',
+        ]);
+
+        
+        if($request->hasFile('photo')){
+            @unlink(public_path().'/'.$team->photo);
+            
+            $fileName = date('YmdHis').'_'.$request->name.'_'.rand(10,10000).'.'.$request->photo->extension();
+            
+            $img = Image::make($request->file('photo'));
+            $img->resize(300, 300);
+            $img->save('storage/images/team/'.$fileName);
+            $photo = '/storage/images/team/'.$fileName;
+        }
+
+        $team->update([
+            'name' => $data['name'],
+            'position' => $data['position'],
+            'bio' => $data['bio'],
+            'photo' => $request->hasFile('photo') ? $photo : $team->photo,
+        ]);
+
+        return  redirect()->route('team.index')->with('success', 'Team member has been updated successfully added!');
     }
 
     /**

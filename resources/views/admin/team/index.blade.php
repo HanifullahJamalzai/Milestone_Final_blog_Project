@@ -2,34 +2,47 @@
 @section('title', 'Team')
 @section('contents')
   
+@if ($errors->any())
+<div class="text-center">
+    @foreach ($errors->all() as $error)
+        <span class="text-danger"> {{ $error }} </span><br>
+    @endforeach
+</div>
+@endif
+
   <div class="card p-3">
-    <form action="forms/contact.php" method="post" class="php-email-form">
+    <form action="{{ isset($team) ? route('team.update', $team) : route('team.store') }}" method="post" enctype="multipart/form-data">
+      @csrf
+      @if(isset($team)) @method('put') @endif
+      
       <div class="row gy-2">
 
         <div class="col-md-4">
-          <input type="text" name="name" class="form-control" placeholder="Name" required>
+          <input type="text" name="name" class="form-control" placeholder="Name" value={{isset($team) ? $team->name : ''}}>
         </div>
 
         <div class="col-md-4 ">
-          <input type="email" class="form-control" name="email" placeholder="Position" required>
+          <input type="email" class="form-control" name="position" placeholder="Position" value={{isset($team) ? $team->position : ''}}>
         </div>
 
         <div class="col-md-4">
-          <input type="file" class="form-control" name="subject" placeholder="Photo" required>
+          <input type="file" class="form-control" name="photo" placeholder="Photo">
         </div>
 
         <div class="col-md-12">
-          <textarea class="form-control" name="message" rows="2" placeholder="Message" required></textarea>
+          <textarea class="form-control" name="bio" rows="2" placeholder="Message" >{{isset($team) ? $team->bio : ''}}</textarea>
         </div>
 
         <div class="col-md-12 text-center">
-          <button type="submit" class="btn btn-primary w-100">Save</button>
+          <button type="submit"  class="col-md-2 btn {{isset($team) ? 'btn-info' : 'btn-primary' }} w-100"> {{isset($team) ? 'Update' : 'Save' }}</button>
         </div>
 
       </div>
     </form>
   </div>
 
+
+  @include('common.alert')
 
   <section class="section">
 
@@ -52,7 +65,7 @@
                         <h5 class="card-title">{{$team->name}} | {{$team->position}}</h5>
                         
                         <div class="icon">
-                          <a href="#">
+                          <a href="{{route('team.edit', $team)}}">
                             <i class="bi bi-pencil-square"></i>
                           </a>
                         </div>

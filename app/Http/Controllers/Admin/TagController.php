@@ -83,7 +83,6 @@ class TagController extends Controller
         ]);
 
         $tag->update(['name' => $data['name']]);
-
         return redirect()->route('tag.index')->with('success', 'Tag updated successfully!');
     }
 
