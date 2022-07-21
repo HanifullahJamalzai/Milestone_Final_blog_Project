@@ -57,12 +57,6 @@
                             @endif
                           @endif  
                         >User</option>
-
-                      {{--
-                        <option value="1" @if(isset($user))   {{ $user->role === 1 && @selected(true) }} @endif  class="">Admin</option>
-                        <option value="2" @if(isset($user))   {{ $user->role === 2 && @selected(true) }} @endif class="">Editor</option>
-                        <option value="3" @if(isset($user))   {{ $user->role === 3 && @selected(true) }} @endif class="">User</option> --}}
-
                     </select>
                 </div>
                   <button type="submit"  class="col-md-2 btn {{isset($user) ? 'btn-info' : 'btn-primary'}}">Update Role</button>

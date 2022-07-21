@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
@@ -14,7 +15,8 @@ class SettingController extends Controller
      */
     public function index()
     {
-        return view('admin.setting.index');
+        $setting = Setting::findOrFail(1)->first();
+        return view('admin.setting.index', compact('setting'));
     }
 
     /**
@@ -67,9 +69,20 @@ class SettingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Setting $setting)
     {
-        //
+       $setting->update(
+        $request->validate([
+            'fb_url' => 'required|max:255',
+            'twitter_url' => 'required|max:255',
+            'instagram_url' => 'required|max:255',
+            'address' => 'required|max:255',
+            'phone' => 'required|max:255',
+            'email' => 'required|max:255|email',
+            'footer_description' => 'required|max:255',
+        ])
+       );
+       return back()->with('success', 'Setting updated successfully!');
     }
 
     /**
