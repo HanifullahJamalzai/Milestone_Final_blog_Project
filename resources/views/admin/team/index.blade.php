@@ -22,7 +22,7 @@
         </div>
 
         <div class="col-md-4 ">
-          <input type="email" class="form-control" name="position" placeholder="Position" value={{isset($team) ? $team->position : old('position')}}>
+          <input type="text" class="form-control" name="position" placeholder="Position" value={{isset($team) ? $team->position : old('position')}}>
         </div>
 
         <div class="col-md-4">
