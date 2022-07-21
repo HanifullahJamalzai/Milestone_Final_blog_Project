@@ -18,8 +18,10 @@
     <div class="row">
       <div class="col-lg-12">
           <div class="col-md-12" >
-            <form action="{{ route('user.store') }}" method="post">
+            <form action="{{ isset($user) ? route('user.update', $user) : route('user.store') }}" method="post">
               @csrf
+              @if(isset($user)) @method('put') @endif
+  
               @error('name')
                 <span class="text-danger text-sm">{{$message}}</span>
               @enderror
@@ -27,27 +29,49 @@
               <div class="form-floating d-flex justify-content-center">
 
                 <div class="col-md-4">
-                    <input type="text" name="name" class="form-control" id="floatingName" placeholder="Selected User Name" value="asdf" readonly>
+                    <input type="text" name="name" class="form-control" id="floatingName" placeholder="Selected User Name" value="{{ isset($user) ? $user->name : '' }}" readonly>
                 </div>
                 <div class="col-md-4">
                     <select name="role" id="" class="form-control">
-                        <option value="1" class="">Choose Role</option>
-                        <option value="1" class="">Admin</option>
-                        <option value="2" class="">Editor</option>
-                        <option value="3" class="">User</option>
+
+                        <option value="0" class="">Choose Role</option>
+                        <option value="1"
+                          @if(isset($user))
+                            @if ($user->role === 1)
+                                @selected(true)
+                            @endif
+                          @endif  
+                        >Admin</option>
+
+                        <option value="2"
+                          @if(isset($user))
+                            @if ($user->role === 2)
+                                @selected(true)
+                            @endif
+                          @endif  
+                        >Editor</option>
+                        <option value="3"
+                          @if(isset($user))
+                            @if ($user->role === 3)
+                                @selected(true)
+                            @endif
+                          @endif  
+                        >User</option>
+
+                      {{--
+                        <option value="1" @if(isset($user))   {{ $user->role === 1 && @selected(true) }} @endif  class="">Admin</option>
+                        <option value="2" @if(isset($user))   {{ $user->role === 2 && @selected(true) }} @endif class="">Editor</option>
+                        <option value="3" @if(isset($user))   {{ $user->role === 3 && @selected(true) }} @endif class="">User</option> --}}
+
                     </select>
                 </div>
-                  <button type="submit"  class="col-md-2 btn btn-primary">Update Role</button>
+                  <button type="submit"  class="col-md-2 btn {{isset($user) ? 'btn-info' : 'btn-primary'}}">Update Role</button>
                 {{-- </div> --}}
               </div>
             </form>
 
         <div class="card mt-3">
-            @if(session()->has('success'))
-              <span class="bg-success text-black">
-                  {{session('success')}}
-              </span>
-            @endif
+           @include('common.alert')
 
             {{-- <div class="card"> --}}
               <div class="card-body">
@@ -76,11 +100,11 @@
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
                         <td>{{$user->phone}}</td>
-                        <td>{{$user->role === 1 ? 'Admin' : 'Editor'}}</td>
+                        <td>@if($user->role === 1)  Admin @elseif($user->role === 2) Editor @else User @endif</td>
                         <td>{{$user->created_at}}</td>
 
                         <td class="d-flex"> 
-                           <a href="" class="btn btn-info">Change Role</a> 
+                           <a href="{{ route('user.edit', $user) }}" class="btn btn-info">Change Role</a> 
                         </td>
                       </tr>
                     @endforeach

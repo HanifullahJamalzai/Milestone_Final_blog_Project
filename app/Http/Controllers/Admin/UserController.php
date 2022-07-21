@@ -57,9 +57,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        $users = User::all();
+        return view('admin.user.index', compact('users','user'));
     }
 
     /**
@@ -69,9 +70,18 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $data = $request->validate([
+            'role' => 'required|numeric'
+        ]);
+
+        $user->update([
+            'role' => $data['role'],
+        ]);
+
+        return redirect()->route('user.index')->with('success', 'User role Updated successfully!');
+
     }
 
     /**

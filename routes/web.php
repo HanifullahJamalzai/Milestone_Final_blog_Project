@@ -18,10 +18,11 @@ use App\Http\Controllers\Landing\LandingController;
 
 // Admin Related Routes 
 Route::group(['prefix' => 'admin', 'middleware'=>'auth'], function(){
-    Route::get('/', [DashboardController::class, 'index'])->name('admin');
     Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
     Route::put('/register/{user}/update', [RegisterController::class, 'update'])->name('register.update');
-
+    Route::put('/register/{user}/password', [RegisterController::class, 'UpdatePassword'])->name('user.password');
+    
+    Route::get('/', [DashboardController::class, 'index'])->name('admin');
     Route::resource('about', AboutController::class);
     // Route::resource('category', CategoryController::class);
     Route::get('/category', [CategoryController::class, 'index'])->name('category.index');

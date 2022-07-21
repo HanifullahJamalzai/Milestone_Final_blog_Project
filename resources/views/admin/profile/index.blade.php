@@ -13,6 +13,16 @@
     </nav>
   </div><!-- End Page Title -->
 
+  @if ($errors->any())
+    <div class="text-center">
+        @foreach ($errors->all() as $error)
+            <span class="text-danger"> {{ $error }} </span><br>
+        @endforeach
+    </div>
+  @endif
+
+  @include('common.alert')
+
   <section class="section profile">
     <div class="row">
       <div class="col-xl-4">
@@ -21,13 +31,13 @@
           <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
             <img src="{{ auth()->user()->photo }}" alt="Profile" class="rounded-circle">
-            <h2>{{auth()->user()->name}}</h2>
-            <h3>{{auth()->user()->email}}</h3>
+            <h2>{{  auth()->user()->name  }}</h2>
+            <h3>{{  auth()->user()->email }}</h3>
           </div>
         </div>
 
       </div>
-
+    
       <div class="col-xl-8">
 
         <div class="card">
@@ -121,12 +131,14 @@
 
               <div class="tab-pane fade pt-3" id="profile-change-password">
                 <!-- Change Password Form -->
-                <form>
+                <form action="{{ route('user.password', auth()->user()) }}" method="post" >
+                  @csrf
+                  @method('PUT')
 
                   <div class="row mb-3">
                     <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
                     <div class="col-md-8 col-lg-9">
-                      <input name="password" type="password" class="form-control" id="currentPassword">
+                      <input name="currentPassword" type="password" class="form-control" id="currentPassword">
                     </div>
                   </div>
 
