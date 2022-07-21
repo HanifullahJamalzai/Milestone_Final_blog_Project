@@ -18,11 +18,11 @@
       <div class="row gy-2">
 
         <div class="col-md-4">
-          <input type="text" name="name" class="form-control" placeholder="Name" value={{isset($team) ? $team->name : ''}}>
+          <input type="text" name="name" class="form-control" placeholder="Name" value={{isset($team) ? $team->name : old('name')}}>
         </div>
 
         <div class="col-md-4 ">
-          <input type="email" class="form-control" name="position" placeholder="Position" value={{isset($team) ? $team->position : ''}}>
+          <input type="email" class="form-control" name="position" placeholder="Position" value={{isset($team) ? $team->position : old('position')}}>
         </div>
 
         <div class="col-md-4">
@@ -30,7 +30,7 @@
         </div>
 
         <div class="col-md-12">
-          <textarea class="form-control" name="bio" rows="2" placeholder="Message" >{{isset($team) ? $team->bio : ''}}</textarea>
+          <textarea class="form-control" name="bio" rows="2" placeholder="Message" >{{isset($team) ? $team->bio : old('bio')}}</textarea>
         </div>
 
         <div class="col-md-12 text-center">
