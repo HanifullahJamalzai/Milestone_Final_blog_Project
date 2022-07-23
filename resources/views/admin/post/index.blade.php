@@ -49,11 +49,11 @@
                           <td>{{ $post->visitor }}</td>
                           <td>{{ $post->comments->count() }}</td>
                           <td class="d-flex"> 
-                            {{-- <form action="{{route('category.destroy', $category)}}" method="post">
+                            <form action="{{route('post.destroy', $post)}}" method="post">
                               @method('delete')
-                              @csrf --}}
+                              @csrf
                               <button type="submit" class="btn btn-danger">Delete</button>
-                            {{-- </form> --}}
+                            </form>
                             | <a 
                                 {{-- href="/category/{{$category->id}}/edit " --}}
                                 {{-- href="{{ route('category.edit', $category) }}" --}}

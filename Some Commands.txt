@@ -1,0 +1,9 @@
+php artisan migrate
+php artisan migrate:fresh
+php artisan migrate:fresh --seed
+php artisan make:factory
+php artisan make:controller ControllerName
+php artisan make:controller ControllerName -resource
+php artisan make:model ModelName
+php artisan make:migration create_tablename_table
+php artisan make:model -mrf

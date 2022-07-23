@@ -62,16 +62,27 @@ class PostController extends Controller
             $thumbnail_s = '/storage/images/posts/thumbnail_s/'.$fileName;
         }
 
-        Post::create([
-            'user_id' => auth()->user()->id,
-            'title'   => $request->title,
+        // Post::create([
+        //     'user_id'     => auth()->user()->id,
+        //     'title'       => $request->title,
+        //     'description' => $request->description,
+        //     'category_id' => $request->category,
+        //     'thumbnail_el'=> $thumbnail_el,
+        //     'thumbnail_l' => $thumbnail_l,
+        //     'thumbnail_m' => $thumbnail_m,
+        //     'thumbnail_s' => $thumbnail_s,
+        // ]);
+
+        auth()->user()->posts()->create([
+            'title'       => $request->title,
             'description' => $request->description,
             'category_id' => $request->category,
-            'thumbnail_el' => $thumbnail_el,
+            'thumbnail_el'=> $thumbnail_el,
             'thumbnail_l' => $thumbnail_l,
             'thumbnail_m' => $thumbnail_m,
             'thumbnail_s' => $thumbnail_s,
         ]);
+        
 
         session()->flash('success', 'Post has been created successfully!');
         return redirect()->route('post.index');
@@ -117,12 +128,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
-    }
-
-    public function abc(){
-        return 'abc';
+        $post->delete();
+        return back()->with('success', 'Post has been deleted');
     }
 }
