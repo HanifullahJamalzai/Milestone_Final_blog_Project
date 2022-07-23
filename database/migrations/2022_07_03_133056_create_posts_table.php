@@ -19,7 +19,10 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->integer('category_id');
-            $table->string('photo');
+            $table->string('thumbnail_s');
+            $table->string('thumbnail_m');
+            $table->string('thumbnail_l');
+            $table->string('thumbnail_el');
             $table->softDeletes();
             $table->timestamps();
         });

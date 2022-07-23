@@ -1,5 +1,6 @@
 @extends('landing.layouts.app')
 @section('title', 'Home')
+
 @section('contents')
 
     <!-- ======= Hero Slider Section ======= -->

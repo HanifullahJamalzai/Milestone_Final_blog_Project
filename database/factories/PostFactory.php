@@ -21,7 +21,11 @@ class PostFactory extends Factory
             'title'       => fake()->title(),
             'description' => fake()->paragraph(4),
             'category_id' => 2,
-            'photo'       => fake()->imageUrl(640,500, 'nature')
+            'thumbnail_s'       => fake()->imageUrl(100,100, 'nature'),
+            'thumbnail_m'       => fake()->imageUrl(320,210, 'nature'),
+            'thumbnail_l'       => fake()->imageUrl(512,334, 'nature'),
+            'thumbnail_el'       => fake()->imageUrl(1947,843, 'nature'),
+            'visitor'      => 2,
         ];
     }
 }
