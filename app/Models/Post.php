@@ -18,10 +18,13 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
+    // یعنی هر پست میتواند چندین کمنت داشته باشد
     public function comments(){
         return $this->hasMany(Comment::class);
     }
     
+
+    // کتگوری مربوط پست است
     public function category(){
         return $this->belongsTo(Category::class);
     }

@@ -56,7 +56,7 @@
                             </form>
                             | <a 
                                 {{-- href="/category/{{$category->id}}/edit " --}}
-                                {{-- href="{{ route('category.edit', $category) }}" --}}
+                                href="{{ route('post.edit', $post) }}"
                                 {{-- href="url('/category/.{{ $category->id }}./edit')" --}}
                             
                               class="btn btn-info">Edit</a>
