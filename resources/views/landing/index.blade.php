@@ -10,13 +10,12 @@
             <div class="col-12">
               <div class="swiper sliderFeaturedPosts">
                 <div class="swiper-wrapper">
-
                   @foreach ($trends as $trend)
                     <div class="swiper-slide">
                       <a href="single-post.html" class="img-bg d-flex align-items-end" style="background-image: url('{{$trend->photo}}');">
                         <div class="img-bg-inner">
                           <h2>{{ $trend->title }}</h2>
-                          <p>{{ $trend->description }}</p>
+                          <p>{!! $trend->description !!}</p>
                         </div>
                       </a>
                     </div>
@@ -47,65 +46,76 @@
         <div class="container" data-aos="fade-up">
           <div class="row g-5">
             <div class="col-lg-4">
-              <div class="post-entry-1 lg">
-                <a href="single-post.html"><img src="{{$sport->thumbnail_l}}" alt="{{$sport->title}}" class="img-fluid"></a>
-                <div class="post-meta"><span class="date">{{$sport->category->name}}</span> <span class="mx-1">&bullet;</span> <span>{{$sport->created_at->diffForhumans()}}</span></div>
-                <h2><a href="single-post.html">{{$sport->title}}</a></h2>
-                <p class="mb-4 d-block">{!! $sport->description !!}</p>
-  
-                <div class="d-flex align-items-center author">
-                  <div class="photo"><img src="assets/img/person-1.jpg" alt="" class="img-fluid"></div>
-                  <div class="name">
-                    <h3 class="m-0 p-0">{{$sport->user->name}}</h3>
+              @if (isset($business[6]))
+                <div class="post-entry-1 lg">
+                  <a href="single-post.html"><img src="{{$business[6]->thumbnail_l}}" alt="{{$business[6]->title}}" class="img-fluid"></a>
+                  <div class="post-meta"><span class="date">{{$business[6]->category->name}}</span> <span class="mx-1">&bullet;</span> <span>{{$business[6]->created_at->diffForhumans()}}</span></div>
+                  <h2><a href="single-post.html">{{$business[6]->title}}</a></h2>
+                  <p class="mb-4 d-block">{!! $business[6]->description !!}</p>
+    
+                  <div class="d-flex align-items-center author">
+                    <div class="photo"><img src="{{$business[6]->user->photo}}" alt="" class="img-fluid"></div>
+                    <div class="name">
+                      <h3 class="m-0 p-0">{{$business[6]->user->name}}</h3>
+                    </div>
                   </div>
                 </div>
-              </div>
+              @endif
   
             </div>
   
             <div class="col-lg-8">
               <div class="row g-5">
-
                 <div class="col-lg-4 border-start custom-border">
-                  @if (isset($sposts[0]))
+                  @if (isset($business[0]))
                   <div class="post-entry-1">
-                    <a href="single-post.html"><img src="{{ $sport[0]->thumbnail_m }}" alt="" class="img-fluid"></a>
-                    <div class="post-meta"><span class="date">{{ $sport[1]->category->name }}</span> <span class="mx-1">&bullet;</span> <span>{{ $sport[0]->created_at->diffForHumans() }}</span></div>
-                    <h2><a href="single-post.html">{{ $sport[0]->category->name }}</a></h2>
+                    <a href="single-post.html"><img src="{{ $business[0]->thumbnail_m }}" alt="" class="img-fluid"></a>
+                    <div class="post-meta"><span class="date">{{ $business[0]->category->name }}</span> <span class="mx-1">&bullet;</span> <span>{{ $business[0]->created_at->diffForHumans() }}</span></div>
+                    <h2><a href="single-post.html">{{ $business[0]->title }}</a></h2>
                   </div>
                   @endif
-                  @if (isset($sposts[1]))
+
+                  @if (isset($business[1]))
                   <div class="post-entry-1">
-                    <a href="single-post.html"><img src="{{ $sport[1]->thumbnail_m }}" alt="" class="img-fluid"></a>
-                    <div class="post-meta"><span class="date">{{ $sport[1]->category->name }}</span> <span class="mx-1">&bullet;</span> <span>{{ $sport[1]->created_at->diffForHumans() }}</span></div>
-                    <h2><a href="single-post.html">{{ $sport[1]->category->name }}</a></h2>
+                    <a href="single-post.html"><img src="{{ $business[1]->thumbnail_m }}" alt="" class="img-fluid"></a>
+                    <div class="post-meta"><span class="date">{{ $business[1]->category->name }}</span> <span class="mx-1">&bullet;</span> <span>{{ $business[1]->created_at->diffForHumans() }}</span></div>
+                    <h2><a href="single-post.html">{{ $business[1]->title }}</a></h2>
                   </div>
                   @endif
-                  @if (isset($sposts[1]))
+
+                  @if (isset($business[2]))
                   <div class="post-entry-1">
-                    <a href="single-post.html"><img src="{{ $sport[1]->thumbnail_m }}" alt="" class="img-fluid"></a>
-                    <div class="post-meta"><span class="date">{{ $sport[1]->category->name }}</span> <span class="mx-1">&bullet;</span> <span>{{ $sport[1]->created_at->diffForHumans() }}</span></div>
-                    <h2><a href="single-post.html">{{ $sport[1]->category->name }}</a></h2>
+                    <a href="single-post.html"><img src="{{ $business[2]->thumbnail_m }}" alt="" class="img-fluid"></a>
+                    <div class="post-meta"><span class="date">{{ $business[2]->category->name }}</span> <span class="mx-1">&bullet;</span> <span>{{ $business[2]->created_at->diffForHumans() }}</span></div>
+                    <h2><a href="single-post.html">{{ $business[2]->title }}</a></h2>
                   </div>
                   @endif
                 </div>
 
                 <div class="col-lg-4 border-start custom-border">
+                  @if (isset($business[3]))
                   <div class="post-entry-1">
-                    <a href="single-post.html"><img src="assets/img/post-landscape-3.jpg" alt="" class="img-fluid"></a>
-                    <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                    <h2><a href="single-post.html">6 Easy Steps To Create Your Own Cute Merch For Instagram</a></h2>
+                    <a href="single-post.html"><img src="{{ $business[3]->thumbnail_m }}" alt="" class="img-fluid"></a>
+                    <div class="post-meta"><span class="date">{{ $business[3]->category->name }}</span> <span class="mx-1">&bullet;</span> <span>{{ $business[3]->created_at->diffForHumans() }}</span></div>
+                    <h2><a href="single-post.html">{{ $business[3]->title }}</a></h2>
                   </div>
+                  @endif
+                  
+                  @if (isset($business[4]))
                   <div class="post-entry-1">
-                    <a href="single-post.html"><img src="assets/img/post-landscape-6.jpg" alt="" class="img-fluid"></a>
-                    <div class="post-meta"><span class="date">Tech</span> <span class="mx-1">&bullet;</span> <span>Mar 1st '22</span></div>
-                    <h2><a href="single-post.html">10 Life-Changing Hacks Every Working Mom Should Know</a></h2>
+                    <a href="single-post.html"><img src="{{ $business[4]->thumbnail_m }}" alt="" class="img-fluid"></a>
+                    <div class="post-meta"><span class="date">{{ $business[4]->category->name }}</span> <span class="mx-1">&bullet;</span> <span>{{ $business[4]->created_at->diffForHumans() }}</span></div>
+                    <h2><a href="single-post.html">{{ $business[4]->title }}</a></h2>
                   </div>
+                  @endif
+
+                  @if (isset($business[5]))
                   <div class="post-entry-1">
-                    <a href="single-post.html"><img src="assets/img/post-landscape-8.jpg" alt="" class="img-fluid"></a>
-                    <div class="post-meta"><span class="date">Travel</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                    <h2><a href="single-post.html">5 Great Startup Tips for Female Founders</a></h2>
+                    <a href="single-post.html"><img src="{{ $business[5]->thumbnail_m }}" alt="" class="img-fluid"></a>
+                    <div class="post-meta"><span class="date">{{ $business[5]->category->name }}</span> <span class="mx-1">&bullet;</span> <span>{{ $business[5]->created_at->diffForHumans() }}</span></div>
+                    <h2><a href="single-post.html">{{ $business[5]->title }}</a></h2>
                   </div>
+                  @endif
                 </div>
   
                 <!-- Trending Section -->
@@ -114,6 +124,7 @@
                   <div class="trending">
                     <h3>Trending</h3>
                     <ul class="trending-post">
+
 
                       @php $n=0; @endphp
                       @foreach ($trends as $trend)

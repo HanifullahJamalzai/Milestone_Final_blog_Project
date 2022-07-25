@@ -11,20 +11,30 @@ use Illuminate\Http\Request;
 class LandingController extends Controller
 {
     public function index(){
-        
+        $trends = Post::orderBy('visitor', 'desc')->limit(5)->get();
         return view('landing.index')
-                    ->with('trends', Post::orderBy('visitor', 'desc')->limit(5)->get())
-                    ->with('sports', Post::orderBy('visitor', 'desc')->where('category_id', 1)->limit(6)->get())
-                    ->with('sport',  Post::where('category_id', 1)->orderByDesc('id')->first())
-                    ->with('setting', Setting::first())
+                    ->with('trends', $trends->only(['title','description','thumbnail_el']))    //Using only method we prevented n+1 query problem of eloquent Moreover, we declared that we don't need more data to be loaded in trends variable
+                    ->with('business', Post::orderBy('visitor', 'desc')->where('category_id', 1)->limit(7)->get())
+                    ->with('culture', Post::orderBy('visitor', 'desc')->where('category_id', 2)->limit(7)->get())
                     ->with('categories', Category::all());
     } //End Method
     
     public function contact(){
         
         return view('landing.contact')
-                    ->with('setting', Setting::first())
                     ->with('categories', Category::all());
     } //End Method
+
+    public function post($post){
+        dd($post);
+        return view('landing.contact')
+                ->with('categories', Category::all());
+    } //End Method
+
+    public function posts($post){
+        dd($post);
+        return view('landing.contact')
+                ->with('categories', Category::all());
+    } // End Method
 
 }

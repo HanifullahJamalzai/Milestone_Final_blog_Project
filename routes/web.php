@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Landing\LandingController;
 
 // Admin Related Routes 
-        // view()->share($messageCount);
 Route::group(['prefix' => 'admin', 'middleware'=>['auth','MessageCountMiddleware']], function(){
     Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
     Route::put('/register/{user}/update', [RegisterController::class, 'update'])->name('register.update');
@@ -41,13 +40,6 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth','MessageCountMiddleware
     Route::resource('profile', ProfileController::class);
 });
 
-// Route::prefix('admin')->group(function () {
-//     Route::middleware(['auth'])->group(function(){
-        
-//     });
-// });
-
-
 
 // Guest Related Routes
 Route::middleware(['guest'])->group(function(){
@@ -60,18 +52,11 @@ Route::middleware(['guest'])->group(function(){
 
 
 // Landing Related Routes
-Route::get('/', [LandingController::class, 'index'])->name('home');
-Route::get('/contact', [LandingController::class, 'contact'])->name('contact');
-
-Route::get('/about', function () {
-    return view('landing.about');
-})->name('about');
-
-
-Route::get('/post', function () {
-    return view('landing.post');
-});
-
-Route::get('/posts', function () {
-    return view('landing.posts');
+Route::middleware('SettingMiddleware')->group(function(){
+    Route::get('/', [LandingController::class, 'index'])->name('home');
+    Route::get('/contact', [LandingController::class, 'contact'])->name('contact');
+    
+    Route::get('/about',[LandingController::class, 'about'])->name('about');
+    Route::get('/post',[LandingController::class, 'post'])->name('post');
+    Route::get('/posts',[LandingController::class, 'posts'])->name('posts');
 });
