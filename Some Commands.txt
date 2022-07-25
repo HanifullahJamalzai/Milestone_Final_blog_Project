@@ -7,3 +7,4 @@ php artisan make:controller ControllerName -resource
 php artisan make:model ModelName
 php artisan make:migration create_tablename_table
 php artisan make:model -mrf
+php artisan storage:link

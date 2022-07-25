@@ -115,7 +115,11 @@ class PostController extends Controller
     {
         $categories = Category::all();
         $tags = Tag::all();
-        return view('admin.post.form', compact('post', 'categories', 'tags'));
+        $selected_tags = [];
+        foreach($post->tags as $tag){
+            array_push($selected_tags, $tag->pivot->tag_id);
+        }
+        return view('admin.post.form', compact('post', 'categories', 'tags', 'selected_tags'));
     }
 
     /**
