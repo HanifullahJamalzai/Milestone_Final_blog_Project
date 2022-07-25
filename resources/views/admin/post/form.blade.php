@@ -41,11 +41,11 @@
           <select multiple="multiple" name="tag[]" id="" class="form-control">
               @foreach ($tags as $tag)
                   <option value="{{$tag->id}}"
-                    @if(isset($post)) 
-                      @foreach ($selected_tags as $selected)
-                          {{$selected === $tag->id ? 'selected' : ''}}
-                      @endforeach
-                    @endif
+                      @if(isset($post)) 
+                        @foreach ($selected_tags as $selected)
+                            {{$selected === $tag->id ? 'selected' : ''}}
+                        @endforeach
+                      @endif
                   >{{$tag->name }}</option>
               @endforeach
           </select>

@@ -1,41 +1,70 @@
 @extends('admin.layouts.app')
-@section('title', 'Message')
+@section('title', 'Messages')
 @section('contents')
 
-<div class="pagetitle">
-    <h1>Message Page</h1>
-    <nav>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item">Pages</li>
-        <li class="breadcrumb-item active">Blank</li>
-      </ol>
-    </nav>
-  </div><!-- End Page Title -->
+<section class="section">
+  <div class="row">
+    <div class="col-lg-12">
+        <div class="col-md-12" >
 
-  <section class="section">
-    <div class="row">
-      <div class="col-lg-6">
+          @include('common.alert')
+          <div class="card mt-3">
+            {{-- alert --}}
+              {{-- <div class="card"> --}}
+                <div class="card-body">
 
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Example Card</h5>
-            <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
+                  <div class="d-flex justify-content-between">
+                    <h5 class="card-title">Messages</h5>
+                  </div>
+
+                  <!-- Table with hoverable rows -->
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">name</th>
+                        <th scope="col">email</th>
+                        <th scope="col">Subject</th>
+                        <th scope="col">Message</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @php
+                          $count = 1;
+                      @endphp
+                      @foreach ($messages as $message)
+                        <tr>
+                          <th scope="row">{{$count++}}</th>
+                          <td>{{$message->name}}</td>
+                          <td>{{ $message->email }}</td>
+                          <td>{{ $message->subject }}</td>
+                          <td>
+                            <textarea name="" id="" cols="30" rows="10">{{ $message->msg }}</textarea>
+                          </td>
+                          <td class="d-flex"> 
+                            <form action="{{route('message.destroy', $message)}}" method="post">
+                              @method('delete')
+                              @csrf
+                              <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                            </td>
+                        </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                  <!-- End Table with hoverable rows -->
+
+                </div>
+              </div>
+
+              
           </div>
-        </div>
 
-      </div>
-
-      <div class="col-lg-6">
-
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Example Card</h5>
-            <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
-          </div>
-        </div>
-
-      </div>
     </div>
-  </section>
+
+  </div>
+</section>
+
+
 @endsection

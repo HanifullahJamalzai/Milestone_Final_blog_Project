@@ -119,6 +119,7 @@ class PostController extends Controller
         foreach($post->tags as $tag){
             array_push($selected_tags, $tag->pivot->tag_id);
         }
+        
         return view('admin.post.form', compact('post', 'categories', 'tags', 'selected_tags'));
     }
 
@@ -161,7 +162,7 @@ class PostController extends Controller
             $post->thumbnail_s = $thumbnail_s;
         }
 
-        $post->title = $request->title;
+        $post->title       = $request->title;
         $post->description = $request->description;
         $post->category_id = $request->category;
         

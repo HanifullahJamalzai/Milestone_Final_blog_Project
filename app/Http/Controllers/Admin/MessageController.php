@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Message;
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
@@ -14,7 +15,8 @@ class MessageController extends Controller
      */
     public function index()
     {
-        return view('admin.message.index');
+        return view('admin.message.index')
+                    ->with('messages', Message::orderByDesc('id')->get());
     }
 
     /**
@@ -78,8 +80,9 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Message $message)
     {
-        //
+        $message->delete();
+        return back()->with('success', 'Message has been deleted successfully');
     }
 }

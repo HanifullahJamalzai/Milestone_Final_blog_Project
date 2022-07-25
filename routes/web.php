@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Landing\LandingController;
 
 // Admin Related Routes 
-Route::group(['prefix' => 'admin', 'middleware'=>'auth'], function(){
+        // view()->share($messageCount);
+Route::group(['prefix' => 'admin', 'middleware'=>['auth','MessageCountMiddleware']], function(){
     Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
     Route::put('/register/{user}/update', [RegisterController::class, 'update'])->name('register.update');
     Route::put('/register/{user}/password', [RegisterController::class, 'UpdatePassword'])->name('user.password');

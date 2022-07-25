@@ -36,8 +36,8 @@
             </div>
           </div>
         </div>
-      </section>
-      <!-- End Hero Slider Section -->
+    </section>
+    <!-- End Hero Slider Section -->
   
 
 
@@ -67,13 +67,27 @@
               <div class="row g-5">
 
                 <div class="col-lg-4 border-start custom-border">
-                  @foreach ($sports as $sport)
+                  @if (isset($sposts[0]))
                   <div class="post-entry-1">
-                    <a href="single-post.html"><img src="{{$sport->thumbnail_m}}" alt="" class="img-fluid"></a>
-                    <div class="post-meta"><span class="date">{{$sport->category->name}}</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                    <h2><a href="single-post.html">{{$sport->title}}</a></h2>
+                    <a href="single-post.html"><img src="{{ $sport[0]->thumbnail_m }}" alt="" class="img-fluid"></a>
+                    <div class="post-meta"><span class="date">{{ $sport[1]->category->name }}</span> <span class="mx-1">&bullet;</span> <span>{{ $sport[0]->created_at->diffForHumans() }}</span></div>
+                    <h2><a href="single-post.html">{{ $sport[0]->category->name }}</a></h2>
                   </div>
-                  @endforeach
+                  @endif
+                  @if (isset($sposts[1]))
+                  <div class="post-entry-1">
+                    <a href="single-post.html"><img src="{{ $sport[1]->thumbnail_m }}" alt="" class="img-fluid"></a>
+                    <div class="post-meta"><span class="date">{{ $sport[1]->category->name }}</span> <span class="mx-1">&bullet;</span> <span>{{ $sport[1]->created_at->diffForHumans() }}</span></div>
+                    <h2><a href="single-post.html">{{ $sport[1]->category->name }}</a></h2>
+                  </div>
+                  @endif
+                  @if (isset($sposts[1]))
+                  <div class="post-entry-1">
+                    <a href="single-post.html"><img src="{{ $sport[1]->thumbnail_m }}" alt="" class="img-fluid"></a>
+                    <div class="post-meta"><span class="date">{{ $sport[1]->category->name }}</span> <span class="mx-1">&bullet;</span> <span>{{ $sport[1]->created_at->diffForHumans() }}</span></div>
+                    <h2><a href="single-post.html">{{ $sport[1]->category->name }}</a></h2>
+                  </div>
+                  @endif
                 </div>
 
                 <div class="col-lg-4 border-start custom-border">
