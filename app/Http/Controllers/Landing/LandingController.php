@@ -14,9 +14,9 @@ class LandingController extends Controller
         $trends = Post::orderBy('visitor', 'desc')->limit(5)->get();
         return view('landing.index')
                     ->with('trends', $trends->only(['title','description','thumbnail_el']))    //Using only method we prevented n+1 query problem of eloquent Moreover, we declared that we don't need more data to be loaded in trends variable
-                    ->with('business', Post::orderBy('visitor', 'desc')->where('category_id', 1)->limit(7)->get())
-                    ->with('culture', Post::orderBy('visitor', 'desc')->where('category_id', 2)->limit(7)->get())
-                    ->with('categories', Category::all());
+                    ->with('business',  Post::orderBy('visitor', 'desc')->where('category_id', 1)->limit(7)->get())
+                    ->with('culture',   Post::orderBy('visitor', 'desc')->where('category_id', 2)->limit(10)->get())
+                    ->with('lifestyle', Post::orderBy('visitor', 'desc')->where('category_id', 3)->limit(10)->get());
     } //End Method
     
     public function contact(){
