@@ -15,7 +15,7 @@
                       <a href="single-post.html" class="img-bg d-flex align-items-end" style="background-image: url('{{$trend->thumbnail_el}}');">
                         <div class="img-bg-inner">
                           <h2>{{ $trend->title }}</h2>
-                          <p>{!! $trend->description !!}</p>
+                          <p>{!! Str::limit($trend->description, 150) !!}</p>
                         </div>
                       </a>
                     </div>
@@ -52,7 +52,7 @@
                   <a href="single-post.html"><img src="{{$business[6]->thumbnail_l}}" alt="{{$business[6]->title}}" class="img-fluid"></a>
                   <div class="post-meta"><span class="date">{{$business[6]->category->name}}</span> <span class="mx-1">&bullet;</span> <span>{{$business[6]->created_at->diffForhumans()}}</span></div>
                   <h2><a href="single-post.html">{{$business[6]->title}}</a></h2>
-                  <p class="mb-4 d-block">{!! $business[6]->description !!}</p>
+                  <p class="mb-4 d-block">{!! Str::limit($business[6]->description, 500) !!}</p>
     
                   <div class="d-flex align-items-center author">
                     <div class="photo"><img src="{{$business[6]->user->photo}}" alt="" class="img-fluid"></div>
@@ -169,7 +169,7 @@
                   <div>
                     <div class="post-meta"><span class="date">{{$culture[0]->category->name}}</span> <span class="mx-1">&bullet;</span> <span>{{$culture[0]->created_at->diffForhumans()}}</span></div>
                     <h3><a href="single-post.html">{{$culture[0]->title}}</a></h3>
-                    <p>{!!$culture[0]->description!!}</p>
+                    <p>{!! Str::limit($culture[0]->description, 200)!!}</p>
                     <div class="d-flex align-items-center author">
                       <div class="photo"><img src="{{$culture[0]->user->photo}}" alt="" class="img-fluid"></div>
                       <div class="name">
@@ -187,7 +187,7 @@
                     <div class="post-meta"><span class="date">{{$culture[1]->category->name}}</span> <span class="mx-1">&bullet;</span> <span>{{$culture[1]->created_at->diffForhumans()}}</span></div>
                     <h2 class="mb-2"><a href="single-post.html">{{$culture[1]->title}}</a></h2>
                     <span class="author mb-3 d-block">{{$culture[1]->user->name}}</span>
-                    <p class="mb-4 d-block">{{$culture[1]->description}}</p>
+                    <p class="mb-4 d-block">{!! Str::limit($culture[1]->description, 150) !!}</p>
                   </div>
   
                   <div class="post-entry-1">
@@ -202,7 +202,7 @@
                     <div class="post-meta"><span class="date">{{$culture[3]->category->name}}</span> <span class="mx-1">&bullet;</span> <span>{{$culture[3]->created_at->diffForhumans()}}</span></div>
                     <h2 class="mb-2"><a href="single-post.html">{{$culture[3]->title}}</a></h2>
                     <span class="author mb-3 d-block">{{$culture[3]->user->name}}</span>
-                    <p class="mb-4 d-block">{{$culture[3]->description}}</p>
+                    <p class="mb-4 d-block">{!! Str::limit($culture[3]->description, 300) !!}</p>
                   </div>
                 </div>
               </div>
@@ -270,7 +270,7 @@
                 <div>
                   <div class="post-meta"><span class="date">{{$lifestyle[0]->category->name}}</span> <span class="mx-1">&bullet;</span> <span>{{$lifestyle[0]->created_at->diffForhumans()}}</span></div>
                   <h3><a href="single-post.html">{{$lifestyle[0]->title}}</a></h3>
-                  <p>{{$lifestyle[0]->description}}</p>
+                  <p>{!! Str::limit($lifestyle[0]->description, 250) !!}</p>
                   <div class="d-flex align-items-center author">
                     <div class="photo"><img src="{{$lifestyle[0]->user->photo}}" alt="" class="img-fluid"></div>
                     <div class="name">
@@ -287,7 +287,7 @@
                     <div class="post-meta"><span class="date">{{$lifestyle[1]->category->name}}</span> <span class="mx-1">&bullet;</span> <span>{{$lifestyle[1]->created_at->diffForhumans()}}</span></div>
                     <h2 class="mb-2"><a href="single-post.html">{{$lifestyle[1]->title}}</a></h2>
                     <span class="author mb-3 d-block">{{$lifestyle[1]->user->name}}</span>
-                    <p class="mb-4 d-block">{!!$lifestyle[1]->description!!}</p>
+                    <p class="mb-4 d-block">{!! Str::limit($lifestyle[1]->description, 100)!!}</p>
                   </div>
   
                   <div class="post-entry-1">
@@ -302,7 +302,7 @@
                     <div class="post-meta"><span class="date">{{$lifestyle[3]->category->name}}</span> <span class="mx-1">&bullet;</span> <span>{{$lifestyle[3]->created_at->diffForhumans()}}</span></div>
                     <h2 class="mb-2"><a href="single-post.html">{{$lifestyle[3]->title}}</a></h2>
                     <span class="author mb-3 d-block">{{$lifestyle[3]->user->name}}</span>
-                    <p class="mb-4 d-block">{!!$lifestyle[3]->description!!}</p>
+                    <p class="mb-4 d-block">{!! Str::limit($lifestyle[3]->description, 300) !!}</p>
                   </div>
                 </div>
               </div>
