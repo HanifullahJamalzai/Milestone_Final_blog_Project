@@ -17,9 +17,9 @@ class ReplyFactory extends Factory
     public function definition()
     {
         return [
-            'user_id'           => 2,
-            'comment_id'        => 2,
-            'reply_description' => fake()->paragraph(1),
+            'user_id'           => fake()->randomElement([1,2,3,4,5,6,7,8,9,10]),
+            'comment_id'        => fake()->numberBetween(1,2000),
+            'reply_description' => fake()->paragraph(2),
         ];
     }
 }

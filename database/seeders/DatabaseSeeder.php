@@ -23,14 +23,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(10)->create();
-        Category::factory(10)->create();
+        \App\Models\User::factory(9)->create();
+        Category::factory(3)->create();
         
-        Comment::factory(20)->create();
-        Message::factory(15)->create();
-        Post::factory(25)->create();
-        Reply::factory(20)->create();
-        Tag::factory(20)->create();
+        Comment::factory(200)->create();
+        Message::factory(10)->create();
+        Post::factory(50)->create();
+        Reply::factory(10)->create();
+        Tag::factory(30)->create();
         Team::factory(10)->create();
 
 

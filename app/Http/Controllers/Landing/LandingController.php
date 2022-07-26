@@ -7,16 +7,15 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Setting;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class LandingController extends Controller
 {
     public function index(){
-        $trends = Post::orderBy('visitor', 'desc')->limit(5)->get();
         return view('landing.index')
-                    ->with('trends', $trends->only(['title','description','thumbnail_el']))    //Using only method we prevented n+1 query problem of eloquent Moreover, we declared that we don't need more data to be loaded in trends variable
-                    ->with('business',  Post::orderBy('visitor', 'desc')->where('category_id', 1)->limit(7)->get())
-                    ->with('culture',   Post::orderBy('visitor', 'desc')->where('category_id', 2)->limit(10)->get())
-                    ->with('lifestyle', Post::orderBy('visitor', 'desc')->where('category_id', 3)->limit(10)->get());
+                    ->with('trends',    Post::orderBy('visitor', 'desc')->with('user')->limit(5)->get())
+                    ->with('business',  Post::orderBy('visitor', 'desc')->where('category_id', 1)->with('category','user')->limit(7)->get())
+                    ->with('culture',   Post::orderBy('visitor', 'desc')->where('category_id', 2)->with('category','user')->limit(10)->get())
+                    ->with('lifestyle', Post::orderBy('visitor', 'desc')->where('category_id', 3)->with('category','user')->limit(10)->get());
     } //End Method
     
     public function contact(){

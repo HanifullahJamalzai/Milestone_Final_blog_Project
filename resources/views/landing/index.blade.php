@@ -12,7 +12,7 @@
                 <div class="swiper-wrapper">
                   @foreach ($trends as $trend)
                     <div class="swiper-slide">
-                      <a href="single-post.html" class="img-bg d-flex align-items-end" style="background-image: url('{{$trend->photo}}');">
+                      <a href="single-post.html" class="img-bg d-flex align-items-end" style="background-image: url('{{$trend->thumbnail_el}}');">
                         <div class="img-bg-inner">
                           <h2>{{ $trend->title }}</h2>
                           <p>{!! $trend->description !!}</p>
