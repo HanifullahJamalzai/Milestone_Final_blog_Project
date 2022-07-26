@@ -12,7 +12,7 @@
                 <div class="swiper-wrapper">
                   @foreach ($trends as $trend)
                     <div class="swiper-slide">
-                      <a href="single-post.html" class="img-bg d-flex align-items-end" style="background-image: url('{{$trend->thumbnail_el}}');">
+                      <a href="{{ route('post', ['id' => $trend->id,'post' => Str::slug($trend->title, '-')]) }}" class="img-bg d-flex align-items-end" style="background-image: url('{{$trend->thumbnail_el}}');">
                         <div class="img-bg-inner">
                           <h2>{{ $trend->title }}</h2>
                           <p>{!! Str::limit($trend->description, 150) !!}</p>
@@ -49,7 +49,7 @@
             <div class="col-lg-4">
               @if (isset($business[6]))
                 <div class="post-entry-1 lg">
-                  <a href="single-post.html"><img src="{{$business[6]->thumbnail_l}}" alt="{{$business[6]->title}}" class="img-fluid"></a>
+                  <a href="{{ route('post', ['id' => $business[6]->id , 'post' => Str::slug($business[6]->title, '-') ]) }}"><img src="{{$business[6]->thumbnail_l}}" alt="{{$business[6]->title}}" class="img-fluid"></a>
                   <div class="post-meta"><span class="date">{{$business[6]->category->name}}</span> <span class="mx-1">&bullet;</span> <span>{{$business[6]->created_at->diffForhumans()}}</span></div>
                   <h2><a href="single-post.html">{{$business[6]->title}}</a></h2>
                   <p class="mb-4 d-block">{!! Str::limit($business[6]->description, 500) !!}</p>
@@ -156,7 +156,7 @@
   
           <div class="section-header d-flex justify-content-between align-items-center mb-5">
             <h2>Culture</h2>
-            <div><a href="category.html" class="more">See All Culture</a></div>
+            <div><a href="{{route('category', ['id' => $culture[0]->category->id, 'category' => Str::slug($culture[0]->category->name, '-') ])}}" class="more">See All Culture</a></div>
           </div>
   
           <div class="row">

@@ -7,7 +7,8 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Setting;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\Tag;
+
 class LandingController extends Controller
 {
     public function index(){
@@ -20,14 +21,36 @@ class LandingController extends Controller
     
     public function contact(){
         
-        return view('landing.contact')
-                    ->with('categories', Category::all());
+        return view('landing.contact');
     } //End Method
 
-    public function post($post){
-        dd($post);
-        return view('landing.contact')
-                ->with('categories', Category::all());
+    public function post($id, $post = null){
+        return view('landing.post')
+                ->with('post', Post::where('id', $id)->first());
+    } //End Method
+
+    public function category($id, $category = null){
+        return view('landing.posts')
+                ->with('posts',  Post::where('category_id', $id)->paginate(10))
+                ->with('trends', Post::orderBy('visitor', 'desc')->with('user', 'category')->limit(6)->get())
+                ->with('tags', Tag::take(50)->get());
+    } //End Method
+    
+    public function tag($id, $tag = null){
+        $tag = Tag::findOrFail($id)->first();
+        
+        $selected_posts = [];
+        
+        foreach($tag->posts() as $post){
+            array_push($selected_posts, $post->pivot->post_id);
+        }
+        dd($selected_posts);
+
+
+        return view('landing.posts')
+                ->with('posts',  Post::where('category_id', $id)->paginate(10))
+                ->with('trends', Post::orderBy('visitor', 'desc')->with('user', 'category')->limit(6)->get())
+                ->with('tags', Tag::take(50)->get());
     } //End Method
 
     public function posts($post){
