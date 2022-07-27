@@ -10,12 +10,12 @@
           <h3 class="category-title">Category: {{$posts[0]->category->name}}</h3>
           @foreach ($posts as $post)
             <div class="d-md-flex post-entry-2 half">
-              <a href="{{ route('post', ['id' => $post->id, 'post' => Str::slug($post->title, '-')]) }}" class="me-4 thumbnail">
+              <a href="{{ route('post', ['post' => $post, 'slug' => Str::slug($post->title, '-')]) }}" class="me-4 thumbnail">
                 <img src="{{$post->thumbnail_l}}" alt="" class="img-fluid">
               </a>
               <div>
                 <div class="post-meta"><span class="date">{{$post->category->name}}</span> <span class="mx-1">&bullet;</span> <span>{{$post->created_at->diffForhumans()}}</span></div>
-                <h3><a href="{{ route('post', ['id' => $post->id, 'post' => Str::slug($post->title, '-')]) }}">{{$post->title}}</a></h3>
+                <h3><a href="{{ route('post', ['post' => $post, 'slug' => Str::slug($post->title, '-')]) }}">{{$post->title}}</a></h3>
                 <p>
                   {!! Str::limit($post->description, 220, '...') !!}
                 </p>
@@ -30,8 +30,9 @@
           @endforeach
 
 
-          <div class="text-start py-4">
+          {{-- <div class="text-start py-4">
             <div class="custom-pagination">
+
               <a href="#" class="prev">Prevous</a>
               <a href="#" class="active">1</a>
               <a href="#">2</a>
@@ -40,7 +41,8 @@
               <a href="#">5</a>
               <a href="#" class="next">Next</a>
             </div>
-          </div>
+          </div> --}}
+          {{$posts}}
         </div>
 
         <div class="col-md-3">
@@ -75,7 +77,7 @@
             <h3 class="aside-title">Categories</h3>
             <ul class="aside-links list-unstyled">
               @foreach ($categories as $category)
-                <li><a href="{{ route('category', ['id' => $category->id, 'category' => Str::slug($category->name, '-')]) }}"><i class="bi bi-chevron-right"></i>{{ $category->name }}</a></li>
+                <li><a href="{{ route('category', ['category' => $category, 'slug' => Str::slug($category->name, '-')]) }}"><i class="bi bi-chevron-right"></i>{{ $category->name }}</a></li>
               @endforeach
             </ul>
           </div><!-- End Categories -->
@@ -84,7 +86,7 @@
             <h3 class="aside-title">Tags</h3>
             <ul class="aside-tags list-unstyled">
               @foreach ($tags as $tag)
-                <li><a href="{{  route('tag', ['id' => $tag->id, 'tag' => Str::slug($tag->name, '-')]) }}">{{$tag->name}}</a></li>
+                <li><a href="{{  route('tag', ['tag' => $tag, 'slug' => Str::slug($tag->name, '-')]) }}">{{$tag->name}}</a></li>
               @endforeach
             </ul>
           </div><!-- End Tags -->

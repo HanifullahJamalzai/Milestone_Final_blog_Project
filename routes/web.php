@@ -57,8 +57,8 @@ Route::middleware('SettingMiddleware')->group(function(){
     Route::get('/contact', [LandingController::class, 'contact'])->name('contact');
     Route::get('/about',[LandingController::class, 'about'])->name('about');
 
-    Route::get('/post/{id}/{post:slug?}',[LandingController::class, 'post'])->name('post');
-    Route::get('/category/{id}/{category:slug?}',[LandingController::class, 'category'])->name('category');
-    Route::get('/tag/{id}/{tag:slug?}',[LandingController::class, 'tag'])->name('tag');
+    Route::get('/post/{post}/{slug?}',[LandingController::class, 'post'])->name('post');
+    Route::get('/category/{category}/{slug?}',[LandingController::class, 'category'])->name('category');
+    Route::get('/tag/{tag}/{slug?}',[LandingController::class, 'tag'])->name('tag');
     Route::get('/about',[LandingController::class, 'about'])->name('about');
 });

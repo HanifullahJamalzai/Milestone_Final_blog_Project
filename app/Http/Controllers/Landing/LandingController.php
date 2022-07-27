@@ -24,9 +24,9 @@ class LandingController extends Controller
         return view('landing.contact');
     } //End Method
 
-    public function post($id, $post = null){
-        return view('landing.post')
-                ->with('post', Post::where('id', $id)->first());
+    public function post(Post $post, $slug = null){
+        return view('landing.post', compact('post'));
+                // ->with('post', Post::where('id', $id)->first());
     } //End Method
 
     public function category($id, $category = null){
@@ -36,16 +36,12 @@ class LandingController extends Controller
                 ->with('tags', Tag::take(50)->get());
     } //End Method
     
-    public function tag($id, $tag = null){
+    public function tag($id, $slug = null){
         $tag = Tag::findOrFail($id)->first();
-        
         $selected_posts = [];
-        
-        foreach($tag->posts() as $post){
+        foreach($tag->posts as $post){
             array_push($selected_posts, $post->pivot->post_id);
         }
-        dd($selected_posts);
-
 
         return view('landing.posts')
                 ->with('posts',  Post::where('category_id', $id)->paginate(10))

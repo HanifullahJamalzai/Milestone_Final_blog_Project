@@ -28,7 +28,7 @@
   <!-- Template Main CSS Files -->
   <link href="{{ asset('landing_assets/css/variables.css') }} " rel="stylesheet">
   <link href="{{ asset('landing_assets/css/main.css') }} " rel="stylesheet">
-
+  @vite('resources/js/app.js')
   <!-- =======================================================
   * Template Name: ZenBlog - v1.0.0
   * Template URL: https://bootstrapmade.com/zenblog-bootstrap-blog-template/
