@@ -10,17 +10,17 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="{{route('home')}}">Home</a></li>
-          <li><a href="single-post.html">Single Post</a></li>
-          <li class="dropdown"><a href="category.html"><span>Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+          <li><a href="single-post.html">Latest Blogs</a></li>
+          <li class="dropdown"><a href="#"><span>Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
               @foreach ($categories as $category)
-                <li><a href="#">{{$category->name}}</a></li>
+                <li><a href="{{ route('category', ['category' => $category, 'slug' => Str::slug($category->name, '-')]) }}">{{$category->name}}</a></li>
               @endforeach
             </ul>
           </li>
 
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="{{ route('about') }}">About</a></li>
+          <li><a href="{{ route('contact') }}">Contact</a></li>
         </ul>
       </nav><!-- .navbar -->
 

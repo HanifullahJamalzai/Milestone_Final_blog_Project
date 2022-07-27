@@ -13,6 +13,6 @@ class Tag extends Model
     protected $guarded = [];
 
     public function posts(){
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Tag::class, 'post_tag', 'tag_id', 'post_id');
     }
 }

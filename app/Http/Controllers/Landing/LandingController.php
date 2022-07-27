@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Landing;
 
 use App\Http\Controllers\Controller;
+use App\Models\About;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use App\Models\Tag;
+use App\Models\Team;
 
 class LandingController extends Controller
 {
@@ -23,6 +25,13 @@ class LandingController extends Controller
         
         return view('landing.contact');
     } //End Method
+    
+    public function about(){
+        
+        return view('landing.about')
+                    ->with('about', About::first())
+                    ->with('team', Team::all());
+    } //End Method
 
     public function post(Post $post, $slug = null){
         return view('landing.post', compact('post'));
@@ -36,15 +45,14 @@ class LandingController extends Controller
                 ->with('tags', Tag::take(50)->get());
     } //End Method
     
-    public function tag($id, $slug = null){
-        $tag = Tag::findOrFail($id)->first();
+    public function tag(Tag $tag, $slug = null){
         $selected_posts = [];
         foreach($tag->posts as $post){
             array_push($selected_posts, $post->pivot->post_id);
         }
 
         return view('landing.posts')
-                ->with('posts',  Post::where('category_id', $id)->paginate(10))
+                ->with('posts',  Post::whereIn('id',$selected_posts)->paginate(10))
                 ->with('trends', Post::orderBy('visitor', 'desc')->with('user', 'category')->limit(6)->get())
                 ->with('tags', Tag::take(50)->get());
     } //End Method

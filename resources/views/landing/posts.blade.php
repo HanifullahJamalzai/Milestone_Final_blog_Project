@@ -17,7 +17,7 @@
                 <div class="post-meta"><span class="date">{{$post->category->name}}</span> <span class="mx-1">&bullet;</span> <span>{{$post->created_at->diffForhumans()}}</span></div>
                 <h3><a href="{{ route('post', ['post' => $post, 'slug' => Str::slug($post->title, '-')]) }}">{{$post->title}}</a></h3>
                 <p>
-                  {!! Str::limit($post->description, 220, '...') !!}
+                  {!! Str::limit($post->description, 450, '...') !!}
                 </p>
                 <div class="d-flex align-items-center author">
                   <div class="photo"><img src="{{$post->user->photo}}" alt="" class="img-fluid"></div>
@@ -29,20 +29,7 @@
             </div>
           @endforeach
 
-
-          {{-- <div class="text-start py-4">
-            <div class="custom-pagination">
-
-              <a href="#" class="prev">Prevous</a>
-              <a href="#" class="active">1</a>
-              <a href="#">2</a>
-              <a href="#">3</a>
-              <a href="#">4</a>
-              <a href="#">5</a>
-              <a href="#" class="next">Next</a>
-            </div>
-          </div> --}}
-          {{$posts}}
+          {{$posts->links()}}
         </div>
 
         <div class="col-md-3">

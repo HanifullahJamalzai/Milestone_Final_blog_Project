@@ -257,7 +257,7 @@
   
           <div class="section-header d-flex justify-content-between align-items-center mb-5">
             <h2>Life Style</h2>
-            <div><a href="category.html" class="more">See All Life Style</a></div>
+            <div><a href="{{ route('category', ['category' => $lifestyle[0]->category->id, 'slug' => Str::slug($lifestyle[0]->title, '-')]) }}" class="more">See All Life Style</a></div>
           </div>
   
           <div class="row">
