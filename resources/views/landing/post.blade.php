@@ -9,8 +9,8 @@
 
           <!-- ======= Single Post Content ======= -->
           <div class="single-post">
-            <div class="post-meta"><span class="date">{{ $post->category->name }}</span> <span class="mx-1">&bullet;</span> <span>{{$post->created_at->diffForhumans()}}</span></div>
-            <h1 class="mb-5">{{ $post->title }}</h1>
+            <div class="post-meta"><span class="date">{{ $post->category->name }}</span> <span class="mx-1">&bullet;</span> <span>{{ $post->created_at->diffForhumans() }}</span></div>
+            <h1 class="mb-5"> {{ $post->title }} </h1>
             <figure class="my-4">
               <img src="{{ $post->thumbnail_el }}" alt="" class="img-fluid" style="width: 90%">
             </figure>
@@ -55,7 +55,7 @@
                       <div class="flex-grow-1 ms-2 ms-sm-3">
                         <div class="reply-meta d-flex align-items-baseline">
                           <h6 class="mb-0 me-2">{{ $reply->user->name }}</h6>
-                          <span class="text-muted">{{  $reply->created_at->diffForhuman() }}</span>
+                          <span class="text-muted">{{  $reply->created_at->diffForhumans() }}</span>
                         </div>
                         <div class="reply-body">
                           {{$reply->reply_description}}

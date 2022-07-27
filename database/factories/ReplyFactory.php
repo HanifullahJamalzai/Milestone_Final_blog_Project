@@ -18,7 +18,7 @@ class ReplyFactory extends Factory
     {
         return [
             'user_id'           => fake()->randomElement([1,2,3,4,5,6,7,8,9,10]),
-            'comment_id'        => fake()->numberBetween(1,2000),
+            'comment_id'        => fake()->numberBetween(1,50),
             'reply_description' => fake()->paragraph(2),
         ];
     }

@@ -45,7 +45,7 @@ class LandingController extends Controller
         $tags = Tag::whereIn('id', $selected_tags)->get();
         
 
-        return view('landing.posts')
+        return view('landing.post')
                 ->with('post', $post)
                 ->with('posts',  Post::orderByDesc('id')->with('user', 'category')->paginate(10))
                 ->with('trends', Post::orderBy('visitor', 'desc')->with('user', 'category')->limit(6)->get())
@@ -109,7 +109,7 @@ class LandingController extends Controller
             'subject' => 'required|min:8|max:255',
             'msg' => 'required|min:8',
         ]);
-        
+
         Message::create($msg);
         return back()->with('success', 'We have successfully received  your message ASAP will respond to you, Thank You!');
     } // End Method
