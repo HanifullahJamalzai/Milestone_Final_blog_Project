@@ -7,7 +7,9 @@
       <div class="row">
 
         <div class="col-md-9" data-aos="fade-up">
-          <h3 class="category-title">Category: {{$posts[0]->category->name}}</h3>
+          @if (isset($post[0]))
+            <h3 class="category-title">Category: {{$posts[0]->category->name}}</h3>
+          @endif
           @foreach ($posts as $post)
             <div class="d-md-flex post-entry-2 half">
               <a href="{{ route('post', ['post' => $post, 'slug' => Str::slug($post->title, '-')]) }}" class="me-4 thumbnail">

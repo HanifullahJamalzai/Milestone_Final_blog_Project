@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Landing;
 use App\Http\Controllers\Controller;
 use App\Models\About;
 use App\Models\Category;
+use App\Models\Message;
 use App\Models\Post;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use App\Models\Tag;
 use App\Models\Team;
+use Illuminate\Support\Facades\DB;
 
 class LandingController extends Controller
 {
@@ -39,22 +41,38 @@ class LandingController extends Controller
     } //End Method
 
     public function category($id, $category = null){
+        $tagElements = DB::table('post_tag')->select('tag_id')->distinct()->get();
+        $selected_tags = [];
+        foreach($tagElements as $tag){
+            array_push($selected_tags, $tag->tag_id);
+        }
+        $tags = Tag::whereIn('id', $selected_tags)->get();
+        
         return view('landing.posts')
                 ->with('posts',  Post::where('category_id', $id)->paginate(10))
                 ->with('trends', Post::orderBy('visitor', 'desc')->with('user', 'category')->limit(6)->get())
-                ->with('tags', Tag::take(50)->get());
+                ->with('tags', $tags);
     } //End Method
     
     public function tag(Tag $tag, $slug = null){
+        
         $selected_posts = [];
         foreach($tag->posts as $post){
             array_push($selected_posts, $post->pivot->post_id);
         }
 
+        $tagElements = DB::table('post_tag')->select('tag_id')->distinct()->get();
+
+        $selected_tags = [];
+        foreach($tagElements as $tag){
+            array_push($selected_tags, $tag->tag_id);
+        }
+        $tags = Tag::whereIn('id', $selected_tags)->get();
+        
         return view('landing.posts')
-                ->with('posts',  Post::whereIn('id',$selected_posts)->paginate(10))
+                ->with('posts',  Post::whereIn('id', $selected_posts)->with('user', 'category')->paginate(10))
                 ->with('trends', Post::orderBy('visitor', 'desc')->with('user', 'category')->limit(6)->get())
-                ->with('tags', Tag::take(50)->get());
+                ->with('tags', $tags);
     } //End Method
 
     public function posts($post){
@@ -62,5 +80,23 @@ class LandingController extends Controller
         return view('landing.contact')
                 ->with('categories', Category::all());
     } // End Method
+
+    public function message(Request $request){
+       $msg =  $request->validate([
+            'name' => 'required|min:8|max:255',
+            'email' => 'required|email|min:8|max:255',
+            'subject' => 'required|min:8|max:255',
+            'msg' => 'required|min:8',
+        ]);
+        Message::create($msg);
+        return back()->with('success', 'We have successfully received  your message ASAP will respond to you, Thank You!');
+    }//
+
+    // public function searchWithAlgolia(Request $request){
+    //     // valiation
+    //     $searchResult = Post::search($request->search);
+
+
+    // }
 
 }
