@@ -90,7 +90,27 @@ class LandingController extends Controller
         ]);
         Message::create($msg);
         return back()->with('success', 'We have successfully received  your message ASAP will respond to you, Thank You!');
-    }//
+    } // End Method
+
+    public function search(Request $request)
+    {
+        $posts = Post::where('title', 'LIKE', "%$request->search%")
+                    ->orWhere('description', 'LIKE', "%$request->search%")
+                    ->paginate(10);
+
+        $tagElements = DB::table('post_tag')->select('tag_id')->distinct()->get();
+
+        $selected_tags = [];
+        foreach($tagElements as $tag){
+            array_push($selected_tags, $tag->tag_id);
+        }
+        $tags = Tag::whereIn('id', $selected_tags)->get();
+        
+        return view('landing.posts')
+                ->with('posts',  $posts)
+                ->with('trends', Post::orderBy('visitor', 'desc')->with('user', 'category')->limit(6)->get())
+                ->with('tags', $tags);
+    } // End Method
 
     // public function searchWithAlgolia(Request $request){
     //     // valiation
@@ -98,5 +118,6 @@ class LandingController extends Controller
 
 
     // }
+
 
 }

@@ -61,4 +61,5 @@ Route::middleware('SettingMiddleware')->group(function(){
     Route::get('/category/{category}/{slug?}',[LandingController::class, 'category'])->name('category');
     Route::get('/tag/{tag}/{slug?}',[LandingController::class, 'tag'])->name('tag');
     Route::get('/about',[LandingController::class, 'about'])->name('about');
+    Route::get('/search',[LandingController::class, 'search'])->name('search');
 });

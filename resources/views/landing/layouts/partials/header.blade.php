@@ -14,7 +14,7 @@
           <li class="dropdown"><a href="#"><span>Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
               @foreach ($categories as $category)
-                <li><a href="{{ route('category', ['category' => $category, 'slug' => Str::slug($category->name, '-')]) }}">{{$category->name}}</a></li>
+                <li><a href="{{ route('category', ['category' => $category, 'slug' => Str::slug($category->name,)]) }}">{{$category->name}}</a></li>
               @endforeach
             </ul>
           </li>
@@ -34,10 +34,16 @@
 
         <!-- ======= Search Form ======= -->
         <div class="search-form-wrap js-search-form-wrap">
-          <form action="search-result.html" class="search-form">
+          <form action="{{route('search')}}" class="search-form">
+            @csrf
+            @method('GET')
+
             <span class="icon bi-search"></span>
-            <input type="text" placeholder="Search" class="form-control">
-            <button class="btn js-search-close"><span class="bi-x"></span></button>
+            <input type="text" name="search" placeholder="Search" class="form-control">
+            <input type="hidden" name="" class="js-search-close">
+            <button type="submit" class="btn ">
+              search
+            </button>
           </form>
         </div><!-- End Search Form -->
 
