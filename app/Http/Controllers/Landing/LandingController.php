@@ -36,8 +36,20 @@ class LandingController extends Controller
     } //End Method
 
     public function post(Post $post, $slug = null){
-        return view('landing.post', compact('post'));
-                // ->with('post', Post::where('id', $id)->first());
+        $tagElements = DB::table('post_tag')->select('tag_id')->distinct()->get();
+
+        $selected_tags = [];
+        foreach($tagElements as $tag){
+            array_push($selected_tags, $tag->tag_id);
+        }
+        $tags = Tag::whereIn('id', $selected_tags)->get();
+        
+
+        return view('landing.posts')
+                ->with('post', $post)
+                ->with('posts',  Post::orderByDesc('id')->with('user', 'category')->paginate(10))
+                ->with('trends', Post::orderBy('visitor', 'desc')->with('user', 'category')->limit(6)->get())
+                ->with('tags', $tags);
     } //End Method
 
     public function category($id, $category = null){
@@ -75,19 +87,29 @@ class LandingController extends Controller
                 ->with('tags', $tags);
     } //End Method
 
-    public function posts($post){
-        dd($post);
-        return view('landing.contact')
-                ->with('categories', Category::all());
+    public function latest(){
+        $tagElements = DB::table('post_tag')->select('tag_id')->distinct()->get();
+
+        $selected_tags = [];
+        foreach($tagElements as $tag){
+            array_push($selected_tags, $tag->tag_id);
+        }
+        $tags = Tag::whereIn('id', $selected_tags)->get();
+        
+        return view('landing.posts')
+                ->with('posts',  Post::orderByDesc('id')->with('user', 'category')->paginate(10))
+                ->with('trends', Post::orderBy('visitor', 'desc')->with('user', 'category')->limit(6)->get())
+                ->with('tags', $tags);
     } // End Method
 
-    public function message(Request $request){
+    public function messageToAdmin(Request $request){
        $msg =  $request->validate([
             'name' => 'required|min:8|max:255',
             'email' => 'required|email|min:8|max:255',
             'subject' => 'required|min:8|max:255',
             'msg' => 'required|min:8',
         ]);
+        
         Message::create($msg);
         return back()->with('success', 'We have successfully received  your message ASAP will respond to you, Thank You!');
     } // End Method

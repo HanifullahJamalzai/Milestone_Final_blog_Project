@@ -53,12 +53,13 @@
 
         @foreach ($team as $member)
           <div class="col-lg-4 text-center mb-5">
-            <img src="{{ $member->photo}}" alt="" class="img-fluid rounded-circle w-50 mb-4">
+            <img src="{{ $member->photo}}" alt="" class="img-fluid rounded-circle w-50 mb-4" style="margin: 0 auto;">
             <h4>{{ $member->name }}</h4>
             <span class="d-block mb-3 text-uppercase">{{ $member->position }}</span>
             <p>{{ $member->bio }}</p>
           </div>
         @endforeach
+
         
       </div>
     </div>

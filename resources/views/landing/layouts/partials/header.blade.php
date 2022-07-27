@@ -1,6 +1,10 @@
-<header id="header" class="header d-flex align-items-center fixed-top">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
+<header id="header" class="header d-flex align-items-center fixed-top">
+  
+  
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+     
+    
       <a href="{{route('home')}}" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
@@ -10,7 +14,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="{{route('home')}}">Home</a></li>
-          <li><a href="single-post.html">Latest Blogs</a></li>
+          <li><a href="{{ route('latest') }}">Latest Blogs</a></li>
           <li class="dropdown"><a href="#"><span>Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
               @foreach ($categories as $category)

@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
         Post::factory(50)->create();
         Reply::factory(10)->create();
         Tag::factory(30)->create();
-        Team::factory(10)->create();
+        Team::factory(6)->create();
 
 
         \App\Models\User::create([
@@ -61,8 +61,8 @@ class DatabaseSeeder extends Seeder
             'twitter_url' => fake()->url(),
             'instagram_url' => fake()->url(),
             'footer_description' => fake()->paragraph(3),
-            'address' => fake()->sentence(),
-            'phone' => fake()->phoneNumber(),
+            'address' => fake()->address(),
+            'phone' => 1234567890,
             'email' => fake()->companyEmail(),
         ]);
 

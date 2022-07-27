@@ -38,11 +38,16 @@
 </head>
 
 <body>
-
+  
+  
   <!-- ======= Header ======= -->
-    @include('landing.layouts.partials.header')
+  @include('landing.layouts.partials.header')
   <!-- End Header -->
-
+  
+  <div class="align-items-center text-center fixed-top">
+    @include('common.alert')
+  </div>
+  
   <main id="main">
         @yield('contents')
   </main><!-- End #main -->
@@ -57,7 +62,7 @@
   <script src="{{ asset('landing_assets/vendor/swiper/swiper-bundle.min.js') }} "></script>
   <script src="{{ asset('landing_assets/vendor/glightbox/js/glightbox.min.js') }} "></script>
   <script src="{{ asset('landing_assets/vendor/aos/aos.js') }} "></script>
-  <script src="{{ asset('landing_assets/vendor/php-email-form/validate.js') }} "></script>
+  {{-- <script src="{{ asset('landing_assets/vendor/php-email-form/validate.js') }} "></script> --}}
 
   <!-- Template Main JS File -->
   <script src="{{ asset('landing_assets/js/main.js') }} "></script>

@@ -56,10 +56,14 @@ Route::middleware('SettingMiddleware')->group(function(){
     Route::get('/', [LandingController::class, 'index'])->name('home');
     Route::get('/contact', [LandingController::class, 'contact'])->name('contact');
     Route::get('/about',[LandingController::class, 'about'])->name('about');
+    Route::get('/latest',[LandingController::class, 'latest'])->name('latest');
 
     Route::get('/post/{post}/{slug?}',[LandingController::class, 'post'])->name('post');
     Route::get('/category/{category}/{slug?}',[LandingController::class, 'category'])->name('category');
     Route::get('/tag/{tag}/{slug?}',[LandingController::class, 'tag'])->name('tag');
-    Route::get('/about',[LandingController::class, 'about'])->name('about');
     Route::get('/search',[LandingController::class, 'search'])->name('search');
+    
+    // Message To Admin
+    Route::post('/message',[LandingController::class, 'messageToAdmin'])->name('messageToAdmin');
+
 });
