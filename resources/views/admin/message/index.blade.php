@@ -40,7 +40,7 @@
                           <td>{{ $message->email }}</td>
                           <td>{{ $message->subject }}</td>
                           <td>
-                            <textarea name="" id="" cols="30" rows="10">{{ $message->msg }}</textarea>
+                            <textarea name="" id="" cols="25" rows="5">{{ $message->msg }}</textarea>
                           </td>
                           <td class="d-flex"> 
                             <form action="{{route('message.destroy', $message)}}" method="post">

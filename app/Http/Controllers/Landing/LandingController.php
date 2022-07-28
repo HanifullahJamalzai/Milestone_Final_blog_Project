@@ -139,7 +139,7 @@ class LandingController extends Controller
     //     $searchResult = Post::search($request->search);
 
 
-    // }
+    // } // End Method
 
 
 }
