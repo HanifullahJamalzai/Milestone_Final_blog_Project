@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->integer('visitor')->nullable();
+        Schema::table('users', function (Blueprint $table) {
+            $table->integer('oauth_id')->nullable();
+            $table->string('oauth_type')->nullable();
         });
     }
 
@@ -25,7 +26,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
         });
     }
 };
