@@ -36,70 +36,40 @@ class LandingController extends Controller
     } //End Method
 
     public function post(Post $post, $slug = null){
-        $tagElements = DB::table('post_tag')->select('tag_id')->distinct()->get();
-
-        $selected_tags = [];
-        foreach($tagElements as $tag){
-            array_push($selected_tags, $tag->tag_id);
-        }
-        $tags = Tag::whereIn('id', $selected_tags)->get();
-        
 
         return view('landing.post')
                 ->with('post', $post)
                 ->with('posts',  Post::orderByDesc('id')->with('user', 'category')->paginate(10))
                 ->with('trends', Post::orderBy('visitor', 'desc')->with('user', 'category')->limit(6)->get())
-                ->with('tags', $tags);
+                ->with('tags', $this->selected_tags());
     } //End Method
 
     public function category($id, $category = null){
-        $tagElements = DB::table('post_tag')->select('tag_id')->distinct()->get();
-        $selected_tags = [];
-        foreach($tagElements as $tag){
-            array_push($selected_tags, $tag->tag_id);
-        }
-        $tags = Tag::whereIn('id', $selected_tags)->get();
         
         return view('landing.posts')
                 ->with('posts',  Post::where('category_id', $id)->paginate(10))
                 ->with('trends', Post::orderBy('visitor', 'desc')->with('user', 'category')->limit(6)->get())
-                ->with('tags', $tags);
+                ->with('tags', $this->selected_tags());
     } //End Method
     
     public function tag(Tag $tag, $slug = null){
-        
         $selected_posts = [];
         foreach($tag->posts as $post){
             array_push($selected_posts, $post->pivot->post_id);
         }
 
-        $tagElements = DB::table('post_tag')->select('tag_id')->distinct()->get();
-
-        $selected_tags = [];
-        foreach($tagElements as $tag){
-            array_push($selected_tags, $tag->tag_id);
-        }
-        $tags = Tag::whereIn('id', $selected_tags)->get();
-        
         return view('landing.posts')
                 ->with('posts',  Post::whereIn('id', $selected_posts)->with('user', 'category')->paginate(10))
                 ->with('trends', Post::orderBy('visitor', 'desc')->with('user', 'category')->limit(6)->get())
-                ->with('tags', $tags);
+                ->with('tags', $this->selected_tags());
     } //End Method
 
     public function latest(){
-        $tagElements = DB::table('post_tag')->select('tag_id')->distinct()->get();
-
-        $selected_tags = [];
-        foreach($tagElements as $tag){
-            array_push($selected_tags, $tag->tag_id);
-        }
-        $tags = Tag::whereIn('id', $selected_tags)->get();
         
         return view('landing.posts')
                 ->with('posts',  Post::orderByDesc('id')->with('user', 'category')->paginate(10))
                 ->with('trends', Post::orderBy('visitor', 'desc')->with('user', 'category')->limit(6)->get())
-                ->with('tags', $tags);
+                ->with('tags', $this->selected_tags());
     } // End Method
 
     public function messageToAdmin(Request $request){
@@ -120,18 +90,11 @@ class LandingController extends Controller
                     ->orWhere('description', 'LIKE', "%$request->search%")
                     ->paginate(10);
 
-        $tagElements = DB::table('post_tag')->select('tag_id')->distinct()->get();
-
-        $selected_tags = [];
-        foreach($tagElements as $tag){
-            array_push($selected_tags, $tag->tag_id);
-        }
-        $tags = Tag::whereIn('id', $selected_tags)->get();
         
         return view('landing.posts')
                 ->with('posts',  $posts)
                 ->with('trends', Post::orderBy('visitor', 'desc')->with('user', 'category')->limit(6)->get())
-                ->with('tags', $tags);
+                ->with('tags', $this->selected_tags());
     } // End Method
 
     // public function searchWithAlgolia(Request $request){
@@ -140,6 +103,17 @@ class LandingController extends Controller
 
 
     // } // End Method
+
+    public function selected_tags(){
+        $selected_tags = [];
+        $tagElements = DB::table('post_tag')->select('tag_id')->distinct()->get();
+        foreach($tagElements as $tag){
+            array_push($selected_tags, $tag->tag_id);
+        }
+        $tags = Tag::whereIn('id', $selected_tags)->get();
+        
+      return $tags;
+    } // End Method
 
 
 }

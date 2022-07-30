@@ -52,7 +52,7 @@
                     
                 <div class="post-entry-1 border-bottom">
                   <div class="post-meta"><span class="date">{{$trend->category->name}}</span> <span class="mx-1">&bullet;</span> <span>{{$trend->created_at->diffForhumans()}}</span></div>
-                  <h2 class="mb-2"><a href="#">{{ $trend->title }}</a></h2>
+                  <h2 class="mb-2"><a href="{{ route('post', ['post'=> $trend->id, 'slug' => Str::slug($trend->title, '-') ]) }}">{{ $trend->title }}</a></h2>
                   <span class="author mb-3 d-block">{{ $trend->user->name }}</span>
                 </div>
                 
