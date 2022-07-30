@@ -95,7 +95,8 @@
                   @endauth
                   @guest
                     <div class="col-12">
-                      <a href="{{ route('google.redirect') }}" class="btn btn-danger text-white">Login with Google</a>
+                      <a href="{{ url('/auth/google/redirect') }}" class="btn btn-danger text-white">Login with Google</a>
+                      {{-- <a href="{{ route('google.redirect') }}" class="btn btn-danger text-white">Login with Google</a> --}}
                     </div>
                   @endguest
                   
