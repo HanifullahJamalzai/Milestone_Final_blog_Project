@@ -28,6 +28,7 @@
 
   <!-- Template Main CSS File -->
   <link href="{{ asset('admin_assets/css/style.css') }}" rel="stylesheet">
+  @vite('resources/js/app.js')
 
   <!-- =======================================================
   * Template Name: NiceAdmin - v2.2.2

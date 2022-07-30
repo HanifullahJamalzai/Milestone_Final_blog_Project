@@ -19,7 +19,7 @@
                 <div class="col-md-10">
                   <input type="text" name="name" class="form-control" id="floatingName" placeholder="Your Name" value="{{isset($tag) ? $tag->name : ''}}">
                 </div>
-                  <button type="submit"  class="col-md-2 btn {{isset($tag) ? 'btn-info' : 'btn-primary' }}"> {{isset($tag) ? 'Update' : 'Save' }}</button>
+                  <button type="submit"  class="col-md-2 btn {{ isset($tag) ? 'btn-info' : 'btn-primary' }}" style="background: {{isset($tag) ? '#0d6efd' : '#0dcaf0' }}"> {{isset($tag) ? 'Update' : 'Save' }}</button>
                 </div>
               </div>
             </form>
@@ -43,11 +43,9 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @php
-                        $number = 0;
-                    @endphp
+                    @php $number = 0; @endphp
                     @foreach ($tags as $tag )
-                      <tr>
+                    <tr>
                         <th scope="row">{{++$number}}</th>
                         <td>{{$tag->name}}</td>
                         <td>{{$tag->created_at}}</td>
@@ -56,7 +54,7 @@
                           <form action="{{route('tag.destroy', $tag)}}" method="post">
                             @method('delete')
                             @csrf
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-danger bg-danger">Delete</button>
                           </form>
                            | <a href="{{ route('tag.edit', $tag) }}" class="btn btn-info">Edit</a>
                           </td>

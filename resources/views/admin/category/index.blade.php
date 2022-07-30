@@ -19,7 +19,7 @@
                 <div class="col-md-10">
                   <input type="text" name="name" class="form-control" id="floatingName" placeholder="Your Name" value="{{isset($category) ? $category->name : ''}}">
                 </div>
-                  <button type="submit"  class="col-md-2 btn {{isset($category) ? 'btn-info' : 'btn-primary' }}"> {{isset($category) ? 'Update' : 'Save' }}</button>
+                  <button type="submit"  class="col-md-2 btn {{isset($category) ? 'btn-info' : 'btn-primary' }}"  style="background: {{isset($tag) ? '#0d6efd' : '#0dcaf0' }}" > {{isset($category) ? 'Update' : 'Save' }}</button>
                 </div>
               </div>
             </form>
@@ -56,7 +56,7 @@
                           <form action="{{route('category.destroy', $category)}}" method="post">
                             @method('delete')
                             @csrf
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-danger bg-danger">Delete</button>
                           </form>
                            | <a 
                               {{-- href="/category/{{$category->id}}/edit " --}}

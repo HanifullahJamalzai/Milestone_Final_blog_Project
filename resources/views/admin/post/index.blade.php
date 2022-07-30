@@ -52,7 +52,7 @@
                             <form action="{{route('post.destroy', $post)}}" method="post">
                               @method('delete')
                               @csrf
-                              <button type="submit" class="btn btn-danger">Delete</button>
+                              <button type="submit" class="btn btn-danger bg-danger">Delete</button>
                             </form>
                             | <a 
                                 {{-- href="/category/{{$category->id}}/edit " --}}
@@ -64,11 +64,14 @@
                         </tr>
                       @endforeach
                     </tbody>
+                    
                   </table>
+                  {{$posts->links()}}
                   <!-- End Table with hoverable rows -->
 
                 </div>
               </div>
+
 
               
           </div>
