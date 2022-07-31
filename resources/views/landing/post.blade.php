@@ -18,6 +18,9 @@
           </div>
           <!-- End Single Post Content -->
 
+          {{-- @php
+              dd(isset($comment))
+          @endphp --}}
           <!-- ======= Comments ======= -->
           <div class="comments">
             <h5 class="comment-title py-4">{{$post->comments->count()}} Comments</h5>
@@ -36,6 +39,7 @@
                   <h6 class="me-2">{{$comment->user->name}}</h6>
                   <span class="text-muted">{{ $comment->created_at->diffForhumans() }}</span>
                   @auth
+
                       @can('edit-comment', $comment)
                         
                       {{-- @if(auth()->user()->id === $comment->user_id) --}}
@@ -56,6 +60,7 @@
                     {{-- @endif --}}
 
                     @endcan
+
                   @endauth
 
                 </div>

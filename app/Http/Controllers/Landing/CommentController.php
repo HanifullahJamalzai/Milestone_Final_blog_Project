@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Landing;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Str;
 
@@ -75,6 +77,19 @@ class CommentController extends Controller
         Gate::authorize('edit-comment', $comment);
 
         // dd($comment);
+        return view('landing.post')
+                ->with('post', Post::where('id', $comment->post_id)->first())
+                ->with('posts',  Post::orderByDesc('id')->with('user', 'category')->paginate(10))
+                ->with('trends', Post::orderBy('visitor', 'desc')->with('user', 'category')->limit(6)->get())
+                ->with('tags', $this->selected_tags())
+                ->with('isCommentForEdit', $comment);
+
+        // return redirect()->route('post', ['post' => $comment->post, 'slug' => str()->slug($comment->post->title, '-') ])
+        //                 ->with('isCommentForEdit', $comment);
+
+        // return redirect()->route('post', ['post' => $comment->post, 'slug' => str()->slug($comment->post->title, '-') ], ['isCommentForEdit' => Comment::findOrFail($comment->id)->first()]);
+                    // ->with('comment', $comment);
+
         // return redirect('/post/'.$comment->post_id)
         //             ->with('isCommentForEdit', $comment);
     }
@@ -114,4 +129,17 @@ class CommentController extends Controller
         
         return back();
     }
+    
+    public function selected_tags(){
+        $selected_tags = [];
+        $tagElements = DB::table('post_tag')->select('tag_id')->distinct()->get();
+        foreach($tagElements as $tag){
+            array_push($selected_tags, $tag->tag_id);
+        }
+        $tags = Tag::whereIn('id', $selected_tags)->get();
+        
+      return $tags;
+    } // End Method
 }
+
+
