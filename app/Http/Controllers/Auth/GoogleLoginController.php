@@ -28,11 +28,11 @@ class GoogleLoginController extends Controller
             'name' => $user->name,
             'email' => $user->email,
             'password' => bcrypt($user->id),
-            'oauth_id' => $user->id,
-            'oauth_type' => 'google',
             'photo' => $user->avatar,
             'phone' => '1234567890',
             'role' => 3,
+            'oauth_id' => $user->id,
+            'oauth_type' => 'google',
         ]);
         auth()->login($fetched_user);
         return redirect()->route('home')->with('success', 'Welcome to our blog Mr.'.$user->name);

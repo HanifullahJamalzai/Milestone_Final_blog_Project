@@ -52,6 +52,7 @@ Route::middleware(['guest'])->group(function(){
     
     Route::get('/auth/google/redirect', [GoogleLoginController::class, 'handleRedirect'])->name('google.redirect');
     Route::get('/auth/google/callback', [GoogleLoginController::class, 'handleCallback'])->name('google.callback');
+   
 });
 
 

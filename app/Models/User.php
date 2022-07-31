@@ -24,6 +24,8 @@ class User extends Authenticatable
         'phone',
         'photo',
         'role',
+        'oauth_id',
+        'oauth_type'
     ];
 
     /**
