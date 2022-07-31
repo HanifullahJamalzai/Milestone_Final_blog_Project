@@ -35,6 +35,29 @@
                 <div class="comment-meta d-flex align-items-baseline">
                   <h6 class="me-2">{{$comment->user->name}}</h6>
                   <span class="text-muted">{{ $comment->created_at->diffForhumans() }}</span>
+                  @auth
+                      @can('edit-comment', $comment)
+                        
+                      {{-- @if(auth()->user()->id === $comment->user_id) --}}
+
+                      &nbsp;
+                      &nbsp;
+                      <span class="text-primary"><a href="{{ route('comment.edit', $comment) }}">edit</a></span>
+                      &nbsp;
+                      &nbsp;
+                      &nbsp;
+                      <span class="text-danger">
+                        <form action="{{ route('comment.destroy', $comment)}}" method="post">
+                          @csrf
+                          @method('delete')
+                          <button type="submit" class="text-danger">delete</button>
+                        </form>
+                      </span>
+                    {{-- @endif --}}
+
+                    @endcan
+                  @endauth
+
                 </div>
                 <div class="comment-body">
                   {{$comment->comment_description}}
@@ -82,17 +105,41 @@
             <div class="col-lg-12">
               <h5 class="comment-title">Leave a Comment</h5>
               <div class="row">
-                <div class="col-12 mb-3">
-                  <label for="comment-message">Message</label>
-                  
-                  <textarea class="form-control" id="comment-message" name="comment_description" placeholder="Enter your comment" cols="30" rows="4"></textarea>
-                </div>
+                
+                {{-- @php dd($isCommentForEdit) @endphp --}}
 
-                  @auth
-                    <div class="col-12">
-                      <input type="submit" class="btn btn-primary" value="Post comment">
-                    </div>
-                  @endauth
+                <form 
+                  @if(isset($isCommentForEdit))
+                    action="{{ route('comment.update', ['comment' => $isCommentForEdit]) }}"
+                  @else
+                    action="{{ route('comment.store', ['post' => $post]) }}"
+                  @endif
+
+                  method="post">
+
+                  @if(isset($isCommentForEdit))
+                    @method('put')
+                  @else
+                    @method('post')
+                  @endif
+
+                  @csrf
+
+                  <div class="col-12 mb-3">
+                    <textarea class="form-control" id="comment-message" name="comment_description" placeholder="Enter your comment here..." cols="30" rows="4"> @if(isset($isCommentForEdit)) {{ $isCommentForEdit->comment_description }} @endif</textarea>
+                  </div>
+  
+                    @auth
+                      <div class="col-12">
+                        @if(isset($isCommentForEdit))
+                          <input type="submit" class="btn btn-success bg-success" value="Update Comment">
+                        @else
+                          <input type="submit" class="btn btn-primary" value="Post comment">
+                        @endif
+                      </div>
+                    @endauth
+                </form>
+
                   @guest
                     <div class="col-12">
                       <a href="{{ route('google.redirect') }}" class="btn btn-danger text-white">Login with Google</a>

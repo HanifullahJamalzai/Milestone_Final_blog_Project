@@ -24,7 +24,7 @@ class GoogleLoginController extends Controller
             return redirect()->route('home')->with('success', 'Welcome Back to our blog Mr.'.$user->name);
        }
        else{
-        $fetched_user = User::create([
+        $newUser = User::create([
             'name' => $user->name,
             'email' => $user->email,
             'password' => bcrypt($user->id),
@@ -34,7 +34,7 @@ class GoogleLoginController extends Controller
             'oauth_id' => $user->id,
             'oauth_type' => 'google',
         ]);
-        auth()->login($fetched_user);
+        auth()->login($newUser);
         return redirect()->route('home')->with('success', 'Welcome to our blog Mr.'.$user->name);
        }
 

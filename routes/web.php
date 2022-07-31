@@ -14,6 +14,7 @@ use App\Http\Controllers\Auth\GoogleLoginController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Landing\CommentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Landing\LandingController;
 
@@ -70,5 +71,11 @@ Route::middleware('SettingMiddleware')->group(function(){
     
     // Message To Admin
     Route::post('/message',[LandingController::class, 'messageToAdmin'])->name('messageToAdmin');
+    
+    // Comment Related Routes
+    Route::post('/comment/{post}', [CommentController::class, 'store'])->name('comment.store');
+    Route::delete('/comment/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
+    Route::get('/comment/{comment}', [CommentController::class, 'edit'])->name('comment.edit');
+    Route::put('/comment/{comment}', [CommentController::class, 'update'])->name('comment.update');
 
 });
