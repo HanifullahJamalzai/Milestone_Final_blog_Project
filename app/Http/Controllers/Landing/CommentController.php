@@ -9,8 +9,6 @@ use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
-use Str;
-
 class CommentController extends Controller
 {
     /**
@@ -83,15 +81,6 @@ class CommentController extends Controller
                 ->with('trends', Post::orderBy('visitor', 'desc')->with('user', 'category')->limit(6)->get())
                 ->with('tags', $this->selected_tags())
                 ->with('isCommentForEdit', $comment);
-
-        // return redirect()->route('post', ['post' => $comment->post, 'slug' => str()->slug($comment->post->title, '-') ])
-        //                 ->with('isCommentForEdit', $comment);
-
-        // return redirect()->route('post', ['post' => $comment->post, 'slug' => str()->slug($comment->post->title, '-') ], ['isCommentForEdit' => Comment::findOrFail($comment->id)->first()]);
-                    // ->with('comment', $comment);
-
-        // return redirect('/post/'.$comment->post_id)
-        //             ->with('isCommentForEdit', $comment);
     }
 
     /**
@@ -113,7 +102,7 @@ class CommentController extends Controller
 
         session()->flash('success', 'Congrats! Comment has successfully updated!');
         
-        return redirect()->route('post', ['post' => $comment->post_id]);
+        return redirect()->route('post', ['post' => $comment->post_id, 'slug' => str()->slug($comment->post->title, '-')]);
     }
 
     /**

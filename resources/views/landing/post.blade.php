@@ -18,9 +18,6 @@
           </div>
           <!-- End Single Post Content -->
 
-          {{-- @php
-              dd(isset($comment))
-          @endphp --}}
           <!-- ======= Comments ======= -->
           <div class="comments">
             <h5 class="comment-title py-4">{{$post->comments->count()}} Comments</h5>
@@ -67,13 +64,35 @@
                 <div class="comment-body">
                   {{$comment->comment_description}}
                 </div>
+                
 
                 <div class="comment-replies bg-light p-3 mt-3 rounded">
                   <h6 class="comment-replies-title mb-4 text-muted text-uppercase">{{$comment->replies->count()}} Replies</h6>
                   
-                  @if ($comment->replies->count() > 0)
+                  {{-- <div class="reply d-flex mb-4"> --}}
+                    @auth
+                      <div class="flex-shrink-0">
+                        <div class="avatar avatar-sm rounded-circle">
+                          <img class="avatar-img" src="{{ auth()->user()->photo }}" alt="" class="img-fluid">
+                        </div>
+                      </div>
+                      <div class="flex-grow-1 ms-2 ms-sm-3">
+                        <div class="reply-meta d-flex align-items-baseline">
+                          <h6 class="mb-0 me-2">{{ auth()->user()->name }}</h6>
+                          <span class="text-muted">now</span>
+                        </div>
+                      @endauth
+
+                      <div class="reply-body mb-4">
+                        <textarea type="text" name="reply_description" placeholder="Reply.." rows="2" cols="100%"></textarea>
+                        <button type="submit" class="btn btn-dark bg-dark text-white text-sm">Add Reply</button>
+                      </div>
+                    </div>
+                  {{-- </div> --}}
+
+                  @if ($comment->replies)
                     @foreach ($comment->replies as $reply)
-                        
+     
                     <div class="reply d-flex mb-4">
                       <div class="flex-shrink-0">
                         <div class="avatar avatar-sm rounded-circle">
@@ -94,6 +113,8 @@
                     @endforeach
 
                   @endif
+
+                  
                   
                 </div>
               </div>
@@ -181,7 +202,7 @@
                     
                 <div class="post-entry-1 border-bottom">
                   <div class="post-meta"><span class="date">{{$trend->category->name}}</span> <span class="mx-1">&bullet;</span> <span>{{$trend->created_at->diffForhumans()}}</span></div>
-                  <h2 class="mb-2"><a href="#">{{ $trend->title }}</a></h2>
+                  <h2 class="mb-2"><a href="{{route('post', ['post' => $trend, 'slug' => Str::slug($trend->title, '-') ]) }}">{{ $trend->title }}</a></h2>
                   <span class="author mb-3 d-block">{{ $trend->user->name }}</span>
                 </div>
                 
