@@ -83,10 +83,31 @@
                         </div>
                       @endauth
 
-                      <div class="reply-body mb-4">
-                        <textarea type="text" name="reply_description" placeholder="Reply.." rows="2" cols="100%"></textarea>
-                        <button type="submit" class="btn btn-dark bg-dark text-white text-sm">Add Reply</button>
-                      </div>
+                      <form
+                        @can ('update-reply', $isReplyForEdit, $comment)
+                          action="{{ route('reply.update', ['reply' => $isReplyForEdit]) }}"
+                        @else
+                          action="{{ route('reply.store',['comment' => $comment]) }}"
+                        @endcan
+                        method="post">
+                        
+                        @can ('update-reply', $isReplyForEdit, $comment)
+                          @method('put')
+                        @else
+                          @method('post')
+                        @endcan
+
+                          @csrf
+
+                          <div class="reply-body mb-4">
+                            <textarea type="text" name="reply_description" placeholder="Reply.." rows="2" cols="100%">@can ('update-reply', $isReplyForEdit, $comment) {{ $isReplyForEdit->reply_description }}@endcan</textarea>
+                            @can ('update-reply', $isReplyForEdit, $comment) 
+                              <button type="submit" class="btn btn-dark bg-primary text-white text-sm">Update Reply</button>
+                            @else
+                              <button type="submit" class="btn btn-dark bg-dark text-white text-sm">Add Reply</button>
+                            @endcan
+                          </div>
+                        </form>
                     </div>
                   {{-- </div> --}}
 
@@ -103,6 +124,30 @@
                         <div class="reply-meta d-flex align-items-baseline">
                           <h6 class="mb-0 me-2">{{ $reply->user->name }}</h6>
                           <span class="text-muted">{{  $reply->created_at->diffForhumans() }}</span>
+                          @auth
+
+                      @can('edit-reply', $reply)
+                        
+                      {{-- @if(auth()->user()->id === $comment->user_id) --}}
+
+                      &nbsp;
+                      &nbsp;
+                      <span class="text-primary"><a href="{{ route('reply.edit', $reply) }}">edit</a></span>
+                      &nbsp;
+                      &nbsp;
+                      &nbsp;
+                      <span class="text-danger">
+                        <form action="{{ route('reply.destroy', $reply)}}" method="post">
+                          @csrf
+                          @method('delete')
+                          <button type="submit" class="text-danger">delete</button>
+                        </form>
+                      </span>
+                    {{-- @endif --}}
+
+                    @endcan
+
+                  @endauth
                         </div>
                         <div class="reply-body">
                           {{$reply->reply_description}}

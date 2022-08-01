@@ -17,12 +17,13 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Landing\CommentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Landing\LandingController;
+use App\Http\Controllers\Landing\ReplyController;
 
 // Admin Related Routes 
-Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 Route::group(['prefix' => 'admin', 'middleware'=>['auth','MessageCountMiddleware', 'IsAccessToDashboard']], function(){
     Route::put('/register/{user}/update', [RegisterController::class, 'update'])->name('register.update');
     Route::put('/register/{user}/password', [RegisterController::class, 'UpdatePassword'])->name('user.password');
+    Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
     
     Route::get('/', [DashboardController::class, 'index'])->name('admin');
     Route::resource('about', AboutController::class);
@@ -77,5 +78,12 @@ Route::middleware('SettingMiddleware')->group(function(){
     Route::delete('/comment/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
     Route::get('/comment/{comment}', [CommentController::class, 'edit'])->name('comment.edit');
     Route::put('/comment/{comment}', [CommentController::class, 'update'])->name('comment.update');
+
+    // Reply Related Routes
+    Route::post('/reply/{comment}', [ReplyController::class, 'store'])->name('reply.store');
+    Route::delete('/reply/{reply}', [ReplyController::class, 'destroy'])->name('reply.destroy');
+    Route::get('/reply/{reply}',    [ReplyController::class, 'edit'])->name('reply.edit');
+    Route::put('/reply/{reply}',    [ReplyController::class, 'update'])->name('reply.update');
+
 
 });

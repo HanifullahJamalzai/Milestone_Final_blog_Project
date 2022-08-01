@@ -45,7 +45,7 @@
                   <tbody>
                     @php $number = 0; @endphp
                     @foreach ($tags as $item )
-                    <x-table-component :number="$number++" :item="$item" deleteRoute="tag.destroy" editRoute="tag.edit"/>
+                      <x-table-component :number="$number++" :item="$item" deleteRoute="tag.destroy" editRoute="tag.edit"/>
                     @endforeach
                   </tbody>
                 </table>
