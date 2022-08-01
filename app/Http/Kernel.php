@@ -65,5 +65,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'MessageCountMiddleware' => \App\Http\Middleware\MessageCountMiddleware::class,
         'SettingMiddleware' => \App\Http\Middleware\SettingMiddleware::class,
+        'IsAccessToDashboard' => \App\Http\Middleware\IsAccessToDashboard::class,
     ];
 }
