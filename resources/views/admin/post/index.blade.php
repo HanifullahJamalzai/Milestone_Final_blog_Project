@@ -48,19 +48,28 @@
                           <td>{{ $post->category->name }}</td>
                           <td>{{ $post->visitor }}</td>
                           <td>{{ $post->comments->count() }}</td>
+                          
                           <td class="d-flex"> 
+                            @can('delete', $post)
                             <form action="{{route('post.destroy', $post)}}" method="post">
                               @method('delete')
                               @csrf
                               <button type="submit" class="btn btn-danger bg-danger">Delete</button>
                             </form>
+                            @endcan
+                            
+                            @can('update', $post)
+                              
                             | <a 
                                 {{-- href="/category/{{$category->id}}/edit " --}}
                                 href="{{ route('post.edit', $post) }}"
                                 {{-- href="url('/category/.{{ $category->id }}./edit')" --}}
                             
                               class="btn btn-info">Edit</a>
+                              
+                            @endcan
                             </td>
+                          
                         </tr>
                       @endforeach
                     </tbody>

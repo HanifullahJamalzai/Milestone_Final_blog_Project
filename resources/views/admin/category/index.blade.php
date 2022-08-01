@@ -43,29 +43,9 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @php
-                        $number = 0;
-                    @endphp
-                    @foreach ($categories as $category )
-                      <tr>
-                        <th scope="row">{{++$number}}</th>
-                        <td>{{$category->name}}</td>
-                        <td>{{$category->created_at}}</td>
-                        <td>{{$category->updated_at}}</td>
-                        <td class="d-flex"> 
-                          <form action="{{route('category.destroy', $category)}}" method="post">
-                            @method('delete')
-                            @csrf
-                            <button type="submit" class="btn btn-danger bg-danger">Delete</button>
-                          </form>
-                           | <a 
-                              {{-- href="/category/{{$category->id}}/edit " --}}
-                              href="{{ route('category.edit', $category) }}"
-                              {{-- href="url('/category/.{{ $category->id }}./edit')" --}}
-                           
-                            class="btn btn-info">Edit</a>
-                          </td>
-                      </tr>
+                    @php $number = 0; @endphp
+                    @foreach ($categories as $item )
+                      <x-table-component :number="$number++" :item="$item" deleteRoute="category.destroy" editRoute="category.edit"/>
                     @endforeach
                   </tbody>
                 </table>

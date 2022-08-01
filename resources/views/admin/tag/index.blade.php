@@ -44,21 +44,8 @@
                   </thead>
                   <tbody>
                     @php $number = 0; @endphp
-                    @foreach ($tags as $tag )
-                    <tr>
-                        <th scope="row">{{++$number}}</th>
-                        <td>{{$tag->name}}</td>
-                        <td>{{$tag->created_at}}</td>
-                        <td>{{$tag->updated_at}}</td>
-                        <td class="d-flex"> 
-                          <form action="{{route('tag.destroy', $tag)}}" method="post">
-                            @method('delete')
-                            @csrf
-                            <button type="submit" class="btn btn-danger bg-danger">Delete</button>
-                          </form>
-                           | <a href="{{ route('tag.edit', $tag) }}" class="btn btn-info">Edit</a>
-                          </td>
-                      </tr>
+                    @foreach ($tags as $item )
+                    <x-table-component :number="$number++" :item="$item" deleteRoute="tag.destroy" editRoute="tag.edit"/>
                     @endforeach
                   </tbody>
                 </table>

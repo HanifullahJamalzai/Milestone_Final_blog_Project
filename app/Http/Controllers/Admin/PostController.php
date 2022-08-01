@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class PostController extends Controller
@@ -21,7 +22,7 @@ class PostController extends Controller
     public function index()
     {
         return view('admin.post.index')
-                    ->with('posts', Post::orderBy('id', 'desc')->paginate(10));
+                    ->with('posts', Post::where('user_id', auth()->user()->id)->orderBy('id', 'desc')->paginate(10));
                     // ->with('posts', Post::orderBy('id', 'desc')->withTrashed()->paginate(10));
     }
 
@@ -113,6 +114,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        Gate::authorize('update', $post);
+
         $categories = Category::all();
         $tags = Tag::all();
         $selected_tags = [];
@@ -132,6 +135,8 @@ class PostController extends Controller
      */
     public function update(PostUpdateRequest $request, Post $post)
     {
+        Gate::authorize('update', $post);
+
         if($request->hasFile('photo')){
             @unlink(public_path().'/'.$post->thumbnail_s);
             @unlink(public_path().'/'.$post->thumbnail_m);
@@ -185,7 +190,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        // $post->delete();
+        Gate::authorize('delete', $post);
+
+        $post->delete();
         // $post->forceDelete();
         // $post->restore();
         return back()->with('success', 'Post has been deleted');
