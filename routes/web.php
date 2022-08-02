@@ -53,6 +53,7 @@ Route::middleware(['guest'])->group(function(){
     Route::get('/register', [RegisterController::class, 'index'])->name('register');
     Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
     Route::get('/verify',  [VerifyEmailController::class, 'index'])->name('verify.index');
+    Route::get('/verify/{token}',  [VerifyEmailController::class, 'verifyToken']);
     
     Route::get('/auth/google/redirect', [GoogleLoginController::class, 'handleRedirect'])->name('google.redirect');
     Route::get('/auth/google/callback', [GoogleLoginController::class, 'handleCallback'])->name('google.callback');

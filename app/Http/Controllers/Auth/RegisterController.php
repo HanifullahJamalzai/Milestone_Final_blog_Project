@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\VerifyUser as MailVerifyUser;
 use App\Models\User;
+use App\Models\VerifyUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class RegisterController extends Controller
@@ -21,14 +24,15 @@ class RegisterController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|confirmed|min:6|max:10',
             'phone' => 'required|min:9|max:12',
+            'photo' => 'required',
         ]);
 
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->phone = $request->phone;
-        $user->role = 2;
-        $user->password = bcrypt($request->password);
+        // $user = new User();
+        // $user->name = $request->name;
+        // $user->email = $request->email;
+        // $user->phone = $request->phone;
+        // $user->role = 2;
+        // $user->password = bcrypt($request->password);
 
         if($request->hasFile('photo')){
             $fileName = date('YmdHis').'_'.$request->name.'_'.rand(10,10000).'.'.$request->photo->extension();
@@ -37,13 +41,31 @@ class RegisterController extends Controller
             $img->resize(300, 300);
             $img->save('storage/images/users/'.$fileName);
             // $request->photo->storeAs('images', $fileName, 'public');
-            $user->photo = '/storage/images/users/'.$fileName;
+            // $user->photo = '/storage/images/users/'.$fileName;
+            $photo = '/storage/images/users/'.$fileName;
         }
 
-        $user->save();
-        auth()->attempt($request->only('email', 'password'));
+        // $user = $user->save();
 
-        return redirect()->route('admin');
+        $user =  User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'role' => 2,
+                'password' => bcrypt($request->password),
+                'photo'   => $photo
+        ]);
+
+        VerifyUser::create([
+            'user_id' => $user->id,
+            'token'   => str()->random(60),
+        ]);
+
+        Mail::to($user->email)->send(new MailVerifyUser($user));
+
+        // auth()->attempt($request->only('email', 'password'));
+
+        return view('auth.verify');
     }
 
     public function update(Request $request, User $user){
