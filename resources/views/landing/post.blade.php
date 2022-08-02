@@ -83,31 +83,43 @@
                         </div>
                       @endauth
 
+                      @auth
                       <form
+                      @if (isset($isReplyForEdit))
                         @can ('update-reply', $isReplyForEdit, $comment)
                           action="{{ route('reply.update', ['reply' => $isReplyForEdit]) }}"
-                        @else
-                          action="{{ route('reply.store',['comment' => $comment]) }}"
                         @endcan
-                        method="post">
+                      @else
+                        action="{{ route('reply.store',['comment' => $comment]) }}"
+                      @endif
+                      method="post">
                         
+                      @if (isset($isReplyForEdit))
                         @can ('update-reply', $isReplyForEdit, $comment)
                           @method('put')
-                        @else
-                          @method('post')
                         @endcan
-
+                      @else
+                          @method('post')
+                      @endif
+                      
                           @csrf
 
                           <div class="reply-body mb-4">
-                            <textarea type="text" name="reply_description" placeholder="Reply.." rows="2" cols="100%">@can ('update-reply', $isReplyForEdit, $comment) {{ $isReplyForEdit->reply_description }}@endcan</textarea>
-                            @can ('update-reply', $isReplyForEdit, $comment) 
-                              <button type="submit" class="btn btn-dark bg-primary text-white text-sm">Update Reply</button>
+                            <textarea type="text" name="reply_description" placeholder="Reply.." rows="2" cols="100%">@if (isset($isReplyForEdit))
+                                @can ('update-reply', $isReplyForEdit, $comment) {{ $isReplyForEdit->reply_description }}@endcan
+                              @endif</textarea>
+                            @if(isset($isReplyForEdit))
+                              @can ('update-reply', $isReplyForEdit, $comment) 
+                                <button type="submit" class="btn btn-dark bg-primary text-white text-sm">Update Reply</button>
+                              @endcan
                             @else
                               <button type="submit" class="btn btn-dark bg-dark text-white text-sm">Add Reply</button>
-                            @endcan
+                            @endif
                           </div>
                         </form>
+                        
+                      @endauth
+
                     </div>
                   {{-- </div> --}}
 

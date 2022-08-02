@@ -51,6 +51,11 @@
           </form>
         </div><!-- End Search Form -->
 
+          <a href="{{ route(Route::currentRouteName(), 'en')}}"  class="bg-danger">EN</a>
+          <a href="{{ route(Route::currentRouteName(), 'pa' )}}" class="bg-success">Pa</a>
+          <a href="{{ route(Route::currentRouteName(), 'fa' )}}" class="bg-info">fa</a>
+
+
       </div>
 
     </div>

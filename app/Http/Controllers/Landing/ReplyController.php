@@ -104,9 +104,12 @@ class ReplyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Reply $reply)
     {
-        //
+        $reply->delete();
+        session()->flash('success', 'Reply has been removed!');
+        
+        return back();
     }
 
     public function selected_tags(){

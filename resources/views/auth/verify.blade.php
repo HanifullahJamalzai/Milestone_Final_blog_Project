@@ -46,36 +46,10 @@
                   <div class="d-flex justify-content-center py-4">
                     <a href="index.html" class="logo d-flex align-items-center w-auto">
                       <img src="assets/img/logo.png" alt="">
-                      <span class="d-none d-lg-block">Verify Your Email to Continue</span>
+                      <span class="d-none d-lg-block">We have sent you a verification token! Please Verify Your Email to Continue</span>
                     </a>
                   </div><!-- End Logo -->
     
-                  <div class="card mb-3">
-    
-                    <div class="card-body">
-    
-                      <div class="pt-4 pb-2">
-                        <p class="text-center small">If you still not received verification token please click here to send you a new one</p>
-                      </div>
-
-                      @include('common.alert')
-    
-                      <form class="row g-3" action="#" method="post">
-                        @csrf
-                        
-                        <div class="col-12">
-                          <button class="btn btn-primary w-100" type="submit">Send New Verification Email</button>
-                        </div>
-
-                    </form>
-
-                    <div class="col-12 mt-2">
-                      <p class="small mb-0">Goto Login page? <a href="{{route('login')}}">Login</a></p>
-                    </div>
-    
-                    </div>
-                  </div>
-
                 </div>
               </div>
             </div>
