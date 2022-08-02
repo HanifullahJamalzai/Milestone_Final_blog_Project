@@ -14,6 +14,7 @@ use App\Http\Controllers\Auth\GoogleLoginController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\Landing\CommentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Landing\LandingController;
@@ -51,6 +52,7 @@ Route::middleware(['guest'])->group(function(){
 
     Route::get('/register', [RegisterController::class, 'index'])->name('register');
     Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+    Route::get('/verify',  [VerifyEmailController::class, 'index'])->name('verify.index');
     
     Route::get('/auth/google/redirect', [GoogleLoginController::class, 'handleRedirect'])->name('google.redirect');
     Route::get('/auth/google/callback', [GoogleLoginController::class, 'handleCallback'])->name('google.callback');
@@ -84,6 +86,4 @@ Route::middleware('SettingMiddleware')->group(function(){
     Route::delete('/reply/{reply}', [ReplyController::class, 'destroy'])->name('reply.destroy');
     Route::get('/reply/{reply}',    [ReplyController::class, 'edit'])->name('reply.edit');
     Route::put('/reply/{reply}',    [ReplyController::class, 'update'])->name('reply.update');
-
-
 });
