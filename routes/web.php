@@ -74,10 +74,11 @@ Route::middleware(['SettingMiddleware', 'LanguageSwitcher'])->group(function(){
     Route::get('/category/{category}/{slug?}',[LandingController::class, 'category'])->name('category');
     Route::get('/tag/{tag}/{slug?}',[LandingController::class, 'tag'])->name('tag');
     Route::get('/search',[LandingController::class, 'search'])->name('search');
+    
     Route::get('language/{language}', function($language){
         session(['language' => $language]);
-        app()->setlocale(session('language'));
-        // dd(app()->getLocale());
+        // app()->setlocale(session('language'));
+        // dd(session('language'));
         return back();
     })->name('language.switcher');
     

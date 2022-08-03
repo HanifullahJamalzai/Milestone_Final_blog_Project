@@ -14,8 +14,8 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="{{route('home')}}">{{  __('index.home') }}</a></li>
-          <li><a href="{{ route('latest') }}">Latest Blogs</a></li>
-          <li class="dropdown"><a href="#"><span>Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+          <li><a href="{{ route('latest') }}">{{ __('index.latest blog') }}</a></li>
+          <li class="dropdown"><a href="#"><span>{{ __('index.categories') }}</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
               @foreach ($categories as $category)
                 <li><a href="{{ route('category', ['category' => $category, 'slug' => Str::slug($category->name,)]) }}">{{$category->name}}</a></li>
@@ -23,8 +23,8 @@
             </ul>
           </li>
 
-          <li><a href="{{ route('about') }}">About</a></li>
-          <li><a href="{{ route('contact') }}">Contact</a></li>
+          <li><a href="{{ route('about') }}">{{ __('index.about') }}</a></li>
+          <li><a href="{{ route('contact') }}">{{ __('index.contact') }}</a></li>
         </ul>
       </nav><!-- .navbar -->
 
