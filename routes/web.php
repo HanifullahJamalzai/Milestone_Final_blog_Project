@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Auth\FacebookLoginController;
+use App\Http\Controllers\Auth\GithubLoginController;
 use App\Http\Controllers\Auth\GoogleLoginController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
@@ -54,9 +56,18 @@ Route::middleware(['guest'])->group(function(){
     Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
     Route::get('/verify',  [VerifyEmailController::class, 'index'])->name('verify.index');
     Route::get('/verify/{token}',  [VerifyEmailController::class, 'verifyToken']);
-    
+   
+    // Google socialite routes 
     Route::get('/auth/google/redirect', [GoogleLoginController::class, 'handleRedirect'])->name('google.redirect');
     Route::get('/auth/google/callback', [GoogleLoginController::class, 'handleCallback'])->name('google.callback');
+    
+    // Github Socialite Routes
+    Route::get('/auth/github/redirect', [GithubLoginController::class, 'handleRedirect'])->name('github.redirect');
+    Route::get('/auth/github/callback', [GithubLoginController::class, 'handleCallback'])->name('github.callback');
+    
+    // Facebook Socialite Routes
+    Route::get('/auth/facebook/redirect', [FacebookLoginController::class, 'handleRedirect'])->name('facebook.redirect');
+    Route::get('/auth/facebook/callback', [FacebookLoginController::class, 'handleCallback'])->name('facebook.callback');
    
 });
 
