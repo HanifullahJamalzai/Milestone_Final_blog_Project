@@ -62,7 +62,9 @@ Route::middleware(['guest'])->group(function(){
 
 
 // Landing Related Routes
-Route::middleware('SettingMiddleware')->group(function(){
+Route::middleware(['SettingMiddleware', 'LanguageSwitcher'])->group(function(){
+    Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
+
     Route::get('/', [LandingController::class, 'index'])->name('home');
     Route::get('/contact', [LandingController::class, 'contact'])->name('contact');
     Route::get('/about',[LandingController::class, 'about'])->name('about');
@@ -72,6 +74,12 @@ Route::middleware('SettingMiddleware')->group(function(){
     Route::get('/category/{category}/{slug?}',[LandingController::class, 'category'])->name('category');
     Route::get('/tag/{tag}/{slug?}',[LandingController::class, 'tag'])->name('tag');
     Route::get('/search',[LandingController::class, 'search'])->name('search');
+    Route::get('language/{language}', function($language){
+        session(['language' => $language]);
+        app()->setlocale(session('language'));
+        // dd(app()->getLocale());
+        return back();
+    })->name('language.switcher');
     
     // Message To Admin
     Route::post('/message',[LandingController::class, 'messageToAdmin'])->name('messageToAdmin');

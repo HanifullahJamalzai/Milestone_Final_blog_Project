@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'MessageCountMiddleware' => \App\Http\Middleware\MessageCountMiddleware::class,
         'SettingMiddleware' => \App\Http\Middleware\SettingMiddleware::class,
         'IsAccessToDashboard' => \App\Http\Middleware\IsAccessToDashboard::class,
+        'LanguageSwitcher' => \App\Http\Middleware\LanguageSwitcher::class,
     ];
 }

@@ -13,7 +13,7 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="{{route('home')}}">Home</a></li>
+          <li><a href="{{route('home')}}">{{  __('index.home') }}</a></li>
           <li><a href="{{ route('latest') }}">Latest Blogs</a></li>
           <li class="dropdown"><a href="#"><span>Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
@@ -45,17 +45,15 @@
             <span class="icon bi-search"></span>
             <input type="text" name="search" placeholder="Search" class="form-control">
             <input type="hidden" name="" class="js-search-close">
-            <button type="submit" class="btn ">
+            <button type="submit" class="btn text-sm" style="border: 1px solid black;">
               search
             </button>
           </form>
         </div><!-- End Search Form -->
-
-          <a href="{{ route(Route::currentRouteName(), 'en')}}"  class="bg-danger">EN</a>
-          <a href="{{ route(Route::currentRouteName(), 'pa' )}}" class="bg-success">Pa</a>
-          <a href="{{ route(Route::currentRouteName(), 'fa' )}}" class="bg-info">fa</a>
-
-
+        
+          <a class="en" href="{{ route('language.switcher', ['language'=> 'en']) }}" style="border: 1px solid black; padding: 0.2em 0.4em; border-radius: 5px; color: black; font-weight: bold; @if(app()->getlocale() == 'en') background: black; color: white; @endif ">EN</a>
+          <a class="fa" href="{{ route('language.switcher', ['language'=> 'fa']) }}" style="border: 1px solid green; padding: 0.2em 0.4em; border-radius: 5px; color: green; font-weight: bold; @if(app()->getlocale() == 'fa') background: green; color: white; @endif">FA</a>
+          <a class="pa" href="{{ route('language.switcher', ['language'=> 'pa']) }}" style="border: 1px solid red; padding: 0.2em 0.4em; border-radius: 5px; color: red; font-weight: bold; @if(app()->getlocale() == 'pa') background: red; color: white; @endif ">PA</a>
       </div>
 
     </div>

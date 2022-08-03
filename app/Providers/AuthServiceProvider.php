@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Reply;
 use App\Models\User;
 use App\Policies\PostPolicy;
+use App\Policies\ReplyPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 

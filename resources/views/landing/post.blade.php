@@ -35,6 +35,7 @@
                 <div class="comment-meta d-flex align-items-baseline">
                   <h6 class="me-2">{{$comment->user->name}}</h6>
                   <span class="text-muted">{{ $comment->created_at->diffForhumans() }}</span>
+                  
                   @auth
 
                       @can('edit-comment', $comment)
@@ -81,9 +82,9 @@
                           <h6 class="mb-0 me-2">{{ auth()->user()->name }}</h6>
                           <span class="text-muted">now</span>
                         </div>
-                      @endauth
+                    @endauth
 
-                      @auth
+                    @auth
                       <form
                       @if (isset($isReplyForEdit))
                         @can ('update-reply', $isReplyForEdit, $comment)
@@ -118,9 +119,9 @@
                           </div>
                         </form>
                         
-                      @endauth
+                      </div>
+                    @endauth
 
-                    </div>
                   {{-- </div> --}}
 
                   @if ($comment->replies)
@@ -178,9 +179,10 @@
             </div>
             
             @endforeach
-          @endif
+            @endif
+          </div>
+          <!-- End Comments -->
 
-        </div><!-- End Comments -->
 
           <!-- ======= Comments Form ======= -->
           <div class="row justify-content-center mt-5">
@@ -236,7 +238,8 @@
               </div>
 
 
-          </div><!-- End Comments Form -->
+          </div>
+          <!-- End Comments Form -->
 
         </div>
 
