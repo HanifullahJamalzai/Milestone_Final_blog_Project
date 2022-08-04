@@ -37,7 +37,15 @@ class AuthServiceProvider extends ServiceProvider
             return $user->id === $comment->user_id;
         });
 
+        Gate::define('IsCommentOwner', function(User $user, Comment $comment){
+            return $user->id === $comment->user_id;
+        });
+        
         Gate::define('edit-reply', function(User $user, Reply $reply){
+            return $user->id === $reply->user_id;
+        });
+
+        Gate::define('IsReplyOwner', function(User $user,  Reply $reply){
             return $user->id === $reply->user_id;
         });
 

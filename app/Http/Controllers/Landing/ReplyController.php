@@ -95,6 +95,7 @@ class ReplyController extends Controller
      */
     public function update(Request $request, Reply $reply)
     {
+        Gate::authorize('IsReplyOwner', $reply);
         $data = $request->validate([
             'reply_description' => 'required|min:4'
         ]);
@@ -116,6 +117,8 @@ class ReplyController extends Controller
      */
     public function destroy(Reply $reply)
     {
+        Gate::authorize('IsReplyOwner', $reply);
+
         $reply->delete();
         session()->flash('success', 'Reply has been removed!');
         

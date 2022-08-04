@@ -57,7 +57,7 @@
         </div>
         @if (auth()->check())
         <span class="text-black" style="font: bold; cursor: pointer;">{{ auth()->user()->name }}</span>
-        <a href="{{ route(Route::currentRouteName()) }}">
+        <a href="">
           <img src="{{auth()->user()->photo}}" alt="" width="40px" class="rounded-50" style="border-radius: 50%">
         </a>
         @else

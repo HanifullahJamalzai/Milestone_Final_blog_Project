@@ -92,6 +92,7 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
+        Gate::authorize('IsCommentOwner', $comment);
         $data = $request->validate([
             'comment_description' => 'required|min:4'
         ]);
@@ -113,6 +114,8 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
+        Gate::authorize('IsCommentOwner', $comment);
+
         $comment->delete();
         session()->flash('success', 'Comment has been removed!');
         

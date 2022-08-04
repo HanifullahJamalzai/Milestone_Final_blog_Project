@@ -1,11 +1,11 @@
 @extends('landing.layouts.app')
 @section('title', 'Post')
 @section('contents')
-    
+
 <section class="single-post-content">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-9 post-content" data-aos="fade-up">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 post-content" data-aos="fade-up">
 
           <!-- ======= Single Post Content ======= -->
           <div class="single-post">
@@ -22,7 +22,6 @@
             @include('landing.layouts.partials.comment')
           <!-- End Comments -->
 
-
           <!-- ======= Comments Form ======= -->
           <div class="row justify-content-center mt-5">
             
@@ -30,6 +29,7 @@
               <h5 class="comment-title">Leave a Comment</h5>
               <div class="row">
                 
+                {{-- @php dd($isCommentForEdit) @endphp --}}
 
                 <form 
                   @if(isset($isCommentForEdit))
