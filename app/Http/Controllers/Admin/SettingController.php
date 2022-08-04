@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class SettingController extends Controller
 {
@@ -15,6 +16,7 @@ class SettingController extends Controller
      */
     public function index()
     {
+        Gate::authorize('IsAdmin');
         $setting = Setting::findOrFail(1)->first();
         return view('admin.setting.index', compact('setting'));
     }
@@ -71,6 +73,7 @@ class SettingController extends Controller
      */
     public function update(Request $request, Setting $setting)
     {
+        Gate::authorize('IsAdmin');
        $setting->update(
         $request->validate([
             'fb_url' => 'required|max:255',

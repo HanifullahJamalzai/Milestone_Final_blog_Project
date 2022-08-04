@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Models\Reply;
+use App\Models\Tag;
 use App\Models\User;
 use App\Policies\PostPolicy;
 use App\Policies\ReplyPolicy;
@@ -40,8 +41,9 @@ class AuthServiceProvider extends ServiceProvider
             return $user->id === $reply->user_id;
         });
 
-        Gate::define('update-reply', function(Reply $reply, Comment $comment){
-            return $reply->comment_id === $comment->id;
+        Gate::define('IsAdmin', function(User $user){
+            return $user->role === 1;
         });
+
     }
 }

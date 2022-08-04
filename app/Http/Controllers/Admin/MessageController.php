@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class MessageController extends Controller
 {
@@ -15,6 +16,7 @@ class MessageController extends Controller
      */
     public function index()
     {
+        Gate::authorize('IsAdmin');
         return view('admin.message.index')
                     ->with('messages', Message::orderByDesc('id')->get());
     }
@@ -82,6 +84,7 @@ class MessageController extends Controller
      */
     public function destroy(Message $message)
     {
+        Gate::authorize('IsAdmin');
         $message->delete();
         return back()->with('success', 'Message has been deleted successfully');
     }

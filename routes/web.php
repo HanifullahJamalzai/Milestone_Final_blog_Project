@@ -88,7 +88,6 @@ Route::middleware(['SettingMiddleware', 'LanguageSwitcher'])->group(function(){
     
     Route::get('language/{language}', function($language){
         session(['language' => $language]);
-        // app()->setlocale(session('language'));
         // dd(session('language'));
         return back();
     })->name('language.switcher');

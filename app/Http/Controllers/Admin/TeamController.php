@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Team;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class TeamController extends Controller
@@ -16,6 +17,7 @@ class TeamController extends Controller
      */
     public function index()
     {
+        Gate::authorize('IsAdmin');
         $teams = Team::all();
         return view('admin.team.index', compact('teams'));
     }
@@ -38,6 +40,7 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('IsAdmin');
         $data = $request->validate([
             'name' => 'required|min:8|max:255',
             'position' => 'required|min:8|max:255',
@@ -85,6 +88,7 @@ class TeamController extends Controller
      */
     public function edit(Team $team)
     {
+        Gate::authorize('IsAdmin');
         $teams = Team::all();
         return view('admin.team.index', compact('team', 'teams'));
     }
@@ -98,6 +102,7 @@ class TeamController extends Controller
      */
     public function update(Request $request, Team $team)
     {
+        Gate::authorize('IsAdmin');
         $data = $request->validate([
             'name' => 'required|min:8|max:255',
             'position' => 'required|min:8|max:255',
@@ -134,6 +139,6 @@ class TeamController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Gate::authorize('IsAdmin');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class CategoryController extends Controller
 {
@@ -15,6 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        Gate::authorize('IsAdmin');
         return view('admin.category.index')
                     ->with('categories', Category::orderBy('id', 'desc')->get());
     }
@@ -37,6 +39,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('IsAdmin');
         $category = $request->validate([
             'name' => 'required|min:4|max:255'
         ]);
@@ -63,7 +66,7 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Category $category)
-    {   
+    {   Gate::authorize('IsAdmin');
         return view('admin.category.index')
                 ->with('category', $category)
                 ->with('categories', Category::orderBy('id', 'desc')->get());
@@ -78,6 +81,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        Gate::authorize('IsAdmin');
         $data = $request->validate([
             'name' => 'required|min:4|max:255'
         ]);
@@ -96,6 +100,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        Gate::authorize('IsAdmin');
         $category->delete();
         return back()->with('success', 'You have Successfully Deleted a category!');
     }

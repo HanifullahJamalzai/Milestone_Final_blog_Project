@@ -34,7 +34,7 @@
         </div>
 
         <div class="col-md-12 text-center">
-          <button type="submit"  class="col-md-2 btn {{isset($team) ? 'btn-info' : 'btn-primary' }} w-100"> {{isset($team) ? 'Update' : 'Save' }}</button>
+          <button type="submit"  class="col-md-2 btn {{isset($team) ? 'btn-info' : 'btn-primary text-black' }} w-100"> {{isset($team) ? 'Update' : 'Save' }}</button>
         </div>
 
       </div>

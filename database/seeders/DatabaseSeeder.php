@@ -48,12 +48,12 @@ class DatabaseSeeder extends Seeder
             'history_description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!
 
             Fugit eaque illum blanditiis, quo exercitationem maiores autem laudantium unde excepturi dolores quasi eos vero harum ipsa quam laborum illo aut facere voluptates aliquam adipisci sapiente beatae ullam. Tempora culpa iusto illum accusantium cum hic quisquam dolor placeat officiis eligendi.',
-            'history_photo' => 'https://avatars.githubusercontent.com/u/43265047?v=4',
+            'history_photo' => 'https://www.opengrowth.com/assets/uploads/images/co_brand_1/users_upload/1/2021/images/Prachi%20Inner%20Blog%20Images%20%20%282%29%281%29.png',
             'mv_title' => 'Mission & Vision',
             'mv_description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!
 
             Fugit eaque illum blanditiis, quo exercitationem maiores autem laudantium unde excepturi dolores quasi eos vero harum ipsa quam laborum illo aut facere voluptates aliquam adipisci sapiente beatae ullam. Tempora culpa iusto illum accusantium cum hic quisquam dolor placeat officiis eligendi.',
-            'mv_photo' => 'https://avatars.githubusercontent.com/u/43265047?v=4',
+            'mv_photo' => 'https://thumbs.dreamstime.com/b/business-success-concept-word-vision-mission-wooden-cube-over-gently-lit-dark-background-business-success-concept-word-vision-144798377.jpg',
         ]);
 
         Setting::create([

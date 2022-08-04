@@ -6,9 +6,8 @@
     <h1>Users Page</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item">Pages</li>
-        <li class="breadcrumb-item active">Blank</li>
+        <li class="breadcrumb-item"><a href="index.html">Admin</a></li>
+        <li class="breadcrumb-item">Users</li>
       </ol>
     </nav>
   </div><!-- End Page Title -->
@@ -59,7 +58,7 @@
                         >User</option>
                     </select>
                 </div>
-                  <button type="submit"  class="col-md-2 btn {{isset($user) ? 'btn-info' : 'btn-primary'}}">Update Role</button>
+                  <button type="submit"  class="col-md-2 btn {{isset($user) ? 'btn-info' : 'btn-primary text-black'}}">Update Role</button>
                 {{-- </div> --}}
               </div>
             </form>
