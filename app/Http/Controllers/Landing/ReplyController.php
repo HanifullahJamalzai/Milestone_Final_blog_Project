@@ -93,9 +93,19 @@ class ReplyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Reply $reply)
     {
-        //
+        $data = $request->validate([
+            'reply_description' => 'required|min:4'
+        ]);
+
+        $reply->update([
+            'reply_description' => $data['reply_description'],
+        ]);
+
+        session()->flash('success', 'Congrats! Reply has successfully updated!');
+        
+        return redirect()->route('post', ['post' => $reply->comment->post_id, 'slug' => str()->slug($reply->comment->post->title, '-')]);
     }
 
     /**
