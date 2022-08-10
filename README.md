@@ -1,64 +1,80 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<div align="center">
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+  <img src="public/Readme/laravel9.png" alt="logo" width="200" height="auto" />
+  <h1>Laravel Blog Project</h1>
+  
+  <p>
+    Final Project of Class 7<sup>th</sup>-June-2022 -- 4:45-5:45 PM
+  </p>
+   
+</div>
 
-## About Laravel
+<br />
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<!-- Table of Contents -->
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+# :notebook_with_decorative_cover: Table of Contents
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+-   [About the Course Syllabus which also consist in project](#star2-about-the-project)
+    -   [Template Customization](#camera-screenshots)
+    -   [Models](#space_invader-tech-stack)
+    -   [Migrations](#dart-features)
+    -   [Mass assignment](#art-color-reference)
+    -   [CSRF Protection](#key-environment-variables)
+    -   [HTTP Verbs](#key-environment-variables)
+    -   [Creating Record](#key-environment-variables)
+    -   [Updating Record](#key-environment-variables)
+    -   [Deleting Record](#key-environment-variables)
+    -   [Flash Messages](#key-environment-variables)
+    -   [Route Model Binding](#key-environment-variables)
+    -   [Middleware](#key-environment-variables)
+    -   [Gate](#key-environment-variables)
+    -   [Policy](#key-environment-variables)
+    -   [Security](#key-environment-variables)
+    -   [Authentication & Authorization](#key-environment-variables)
+    -   [Multi Users with roles](#key-environment-variables)
+    -   [Lazy Loading](#key-environment-variables)
+    -   [Eager Loading](#key-environment-variables)
+    -   [File Upload](#key-environment-variables)
+    -   [Soft Delete](#key-environment-variables)
+    -   [Eloquent Model Factories](#key-environment-variables)
+    -   [Eloquent Model Seeder](#key-environment-variables)
+    -   [Slug](#key-environment-variables)
+    -   [Localization](#key-environment-variables)
+    -   [Pagination](#key-environment-variables)
+    -   [Filtering Records](#key-environment-variables)
+    -   [Search](#key-environment-variables)
+    -   [Notification with Laravel](#key-environment-variables)
+    -   [Hashing](#key-environment-variables)
+    -   [Deep dive into Relationships](#key-environment-variables)
+    -   [One to One Relationship](#key-environment-variables)
+    -   [One to Many Relationship](#key-environment-variables)
+    -   [Many to Many Relationship](#key-environment-variables)
+    -   [Inverse Relationships](#key-environment-variables)
+    -   [Using Some external libraries](#key-environment-variables)
+    -   [Working with APIs](#key-environment-variables)
+    -   [Working with Postman](#key-environment-variables)
+    -   [...](#key-environment-variables)
+    <!-- About the Project -->
 
-## Learning Laravel
+## :star2: About the Project
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<!-- Screenshots -->
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### :camera: Screenshots
 
-## Laravel Sponsors
+<div align="center"> 
+  <img src="public/Readme/landing.png" alt="screenshot" />
+</div>
+<div align="center"> 
+  <img src="public/Readme/comment and replies.png" alt="screenshot" />
+</div>
+<div align="center"> 
+  <img src="public/Readme/landing.png" alt="screenshot" />
+</div>
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+<!-- FAQ -->
 
-### Premium Partners
+## :grey_question:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+-   Practical Course with some theory so you get more experience that its essential for becoming a Professional Laravel Developer.
