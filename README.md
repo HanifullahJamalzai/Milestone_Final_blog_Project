@@ -15,7 +15,7 @@
 
 # :notebook_with_decorative_cover: Table of Contents
 
--   [About the Course Syllabus which also consist in project](#star2-about-the-project)
+-   [Course Syllabus](#star2-about-the-project)
     -   [Template Customization](#camera-screenshots)
     -   [Models](#space_invader-tech-stack)
     -   [Migrations](#dart-features)
