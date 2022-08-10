@@ -36,9 +36,8 @@ class LandingController extends Controller
     } //End Method
 
     public function post(Post $post, $slug = null){
-
         return view('landing.post')
-                ->with('post', $post::with('comments', 'user')->first())
+                ->with('post', $post)
                 ->with('trends', Post::orderBy('visitor', 'desc')->with('user', 'category')->limit(6)->get())
                 ->with('tags', $this->selected_tags());
     } //End Method

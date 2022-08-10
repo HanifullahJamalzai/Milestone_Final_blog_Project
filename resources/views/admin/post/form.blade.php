@@ -18,7 +18,7 @@
       <div class="row gy-2">
 
         <div class="col-md-12">
-          <input type="text" name="title" class="form-control" placeholder="Post title" value={{isset($post) ? $post->title : old('title')}}>
+          <input type="text" name="title" class="form-control" placeholder="Post title" value="{{ isset($post) ? $post->title : old('title')}}">
         </div>
 
         <div class="col-md-6">

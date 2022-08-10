@@ -18,11 +18,11 @@
       <div class="row gy-2">
 
         <div class="col-md-4">
-          <input type="text" name="name" class="form-control" placeholder="Name" value={{isset($team) ? $team->name : old('name')}}>
+          <input type="text" name="name" class="form-control" placeholder="Name" value="{{isset($team) ? $team->name : old('name')}}">
         </div>
 
         <div class="col-md-4 ">
-          <input type="text" class="form-control" name="position" placeholder="Position" value={{isset($team) ? $team->position : old('position')}}>
+          <input type="text" class="form-control" name="position" placeholder="Position" value="{{isset($team) ? $team->position : old('position')}}">
         </div>
 
         <div class="col-md-4">
