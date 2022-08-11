@@ -71,7 +71,7 @@
   <img src="public/Readme/comment and replies.png" alt="screenshot" />
 </div>
 <div align="center"> 
-  <img src="public/Readme/landing.png" alt="screenshot" />
+  <img src="public/Readme/admin team.png" alt="screenshot" />
 </div>
 
 <!-- FAQ -->
